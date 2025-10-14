@@ -49,18 +49,7 @@ public class AuthController : ControllerBase
         return Ok(new { message = "User registered successfully" });
     }
 
-    [HttpPost("send-recovery-code")]
-    public async Task<IActionResult> SendRecoveryCode([FromBody] RecoveryCodeRequest request)
-    {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        var result = await _passwordRecovery.SendRecoveryCodeAsync(request.Email);
-        if (!result)
-            return BadRequest(new { message = "Correo no registrado" });
-
-        return Ok(new { message = "Código enviado al correo" });
-    }
+ 
 
     [HttpPost("verify-recovery-code")]
     public async Task<IActionResult> VerifyRecoveryCode([FromBody] RecoveryVerifyRequest request)
