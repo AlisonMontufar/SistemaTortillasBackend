@@ -18,7 +18,7 @@ namespace Tortilleria.Infrastructure.Persistence
 
         public async Task<IEnumerable<Empresa>> GetAllAsync()
         {
-            return await _context.Empresa.ToListAsync(); // usa singular como tu DbSet
+            return await _context.Empresa.ToListAsync(); 
         }
     }
 
