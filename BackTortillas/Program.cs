@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Tortillas.Application;
+using Tortillas.Application.Services;
 using Tortillas.Application.UseCases.Auth;
 
 using Tortillas.Domain.Interfaces.Repositories;
@@ -48,7 +49,7 @@ builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<RegisterUser>();
 builder.Services.AddScoped<LoginUser>();
 builder.Services.AddScoped<RoleUser>();
-
+builder.Services.AddScoped<UserEmailNotificationService>();
 // Registrar PasswordRecovery
 builder.Services.AddScoped<PasswordRecovery>();
 
