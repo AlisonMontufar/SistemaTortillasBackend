@@ -9,60 +9,25 @@ namespace Tortillas.Application.UseCases.Auth
     public class PasswordRecovery
     {
         private readonly IUserRepository _userRepo;
-        private readonly IEmailService _emailService;
 
-        public PasswordRecovery(IUserRepository userRepo, IEmailService emailService)
+        public PasswordRecovery(IUserRepository userRepo)
         {
             _userRepo = userRepo;
-            _emailService = emailService;
-        }
-        public async Task<bool> SendRegistrationCodeAsync(string email)
-        {
-            var user = await _userRepo.GetByEmailAsync(email);
-            if (user != null) return false; 
-
-            var code = new Random().Next(100000, 999999).ToString();
-
-            var tempUser = new Usuario
-            {
-                CorreoUsuario = email,
-                CodigoVerificacion = code,
-                FechaExpiracionCodigoV = DateTime.UtcNow.AddMinutes(15)
-            };
-
-            await _userRepo.AddAsync(tempUser); 
-
-            string body = $"Hola,<br><br>" +
-                          $"Tu código de verificación para registrar tu cuenta es: <b>{code}</b><br>" +
-                          $"Este código expirará en 15 minutos.<br><br>" +
-                          $"Si no solicitaste este registro, puedes ignorar este mensaje.";
-
-            await _emailService.SendEmailAsync(email, "Verifica tu correo para registrarte", body);
-            return true;
         }
 
-
-        public async Task<bool> SendRecoveryCodeAsync(string email)
+        public async Task<(bool success, string code)> GenerateRecoveryCodeAsync(string email)
         {
             var user = await _userRepo.GetByEmailAsync(email);
-            if (user == null) return false;
+            if (user == null) return (false, null);
 
             var code = new Random().Next(100000, 999999).ToString();
-
             user.CodigoVerificacion = code;
             user.FechaExpiracionCodigoV = DateTime.UtcNow.AddMinutes(15);
+
             await _userRepo.UpdateAsync(user);
-
-            string body = $"Hola {user.Nombre},<br><br>" +
-                          $"Tu código de recuperación es: <b>{code}</b><br>" +
-                          $"El código expirará en 15 minutos.<br><br>" +
-                          $"Si no solicitaste este cambio, ignora este correo.";
-
-            await _emailService.SendEmailAsync(user.CorreoUsuario, "Recuperar contraseña", body);
-            return true;
+            return (true, code);
         }
 
-  
         public async Task<bool> VerifyRecoveryCodeAsync(string email, string code)
         {
             var user = await _userRepo.GetByEmailAsync(email);
@@ -71,17 +36,13 @@ namespace Tortillas.Application.UseCases.Auth
             return user.CodigoVerificacion == code && user.FechaExpiracionCodigoV > DateTime.UtcNow;
         }
 
-       
         public async Task<bool> ResetPasswordAsync(string email, string newPassword, IAuthService authService)
         {
             var user = await _userRepo.GetByEmailAsync(email);
-            if (user == null) return false;
-
-            if (user.FechaExpiracionCodigoV <= DateTime.UtcNow)
+            if (user == null || user.FechaExpiracionCodigoV <= DateTime.UtcNow)
                 return false;
 
             user.ContrasenaUsuario = authService.HashPassword(newPassword);
-
             user.CodigoVerificacion = null;
             user.FechaExpiracionCodigoV = null;
 
