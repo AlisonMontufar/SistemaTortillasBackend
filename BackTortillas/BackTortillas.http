@@ -1,0 +1,6 @@
+@BackTortillas_HostAddress = http://localhost:5149
+
+GET {{BackTortillas_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
