@@ -53,6 +53,11 @@ namespace Tortillas.Application.Services
                     body = EmailTemplates.GetPedidoConfirmadoBody(user.Nombre);
                     break;
 
+                case NotificationType.RegistrationLink:
+                    subject = "Invitación a registrarte en Tortillas";
+                    body = EmailTemplates.GetRegistrationLinkBody(user.Nombre, code, "Administrador"); // o “Encargado”
+                    break;
+
                 default:
                     return false;
             }

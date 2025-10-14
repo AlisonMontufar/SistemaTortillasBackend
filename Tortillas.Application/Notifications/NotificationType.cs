@@ -12,7 +12,8 @@ namespace Tortillas.Application.Notifications
         PasswordRecovery,
         PasswordResetConfirmation,
         AccountBlocked,
-        PedidoConfirmado
+        PedidoConfirmado,
+        RegistrationLink
     }
 
 }

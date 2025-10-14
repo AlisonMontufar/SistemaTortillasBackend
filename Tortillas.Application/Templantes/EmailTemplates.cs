@@ -91,5 +91,22 @@ namespace Tortillas.Application.Templates
 
             return BaseHtml(body);
         }
+        public static string GetRegistrationLinkBody(string nombre, string link, string rolNombre)
+        {
+            string body = $@"
+        <p>Hola {nombre},</p>
+        <p>Se te ha invitado a registrarte en <b>Tortillas</b> como <b>{rolNombre}</b>.</p>
+        <p>Puedes completar tu registro dando clic en el siguiente enlace:</p>
+        <p style='text-align:center;'>
+            <a href='{link}' style='display:inline-block; padding:10px 20px; background-color:#f39c12; color:#fff; border-radius:5px; text-decoration:none;'>
+                Completar registro
+            </a>
+        </p>
+        <p>Este enlace expirará en 30 minutos.</p>
+        <p>Saludos,<br>El equipo de Tortillas.</p>";
+
+            return BaseHtml(body);
+        }
+
     }
 }
