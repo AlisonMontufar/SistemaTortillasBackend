@@ -1,0 +1,170 @@
+## Visual Studio 2022 / .NET / C# ##
+
+# Compiled binaries
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+*.dll
+*.exe
+*.app
+*.appx
+*.apk
+*.ap_
+*.aab
+*.xap
+*.msix
+*.msixupload
+*.msixbundle
+*.appxbundle
+
+# VS backup files
+*.bak
+*.backup
+*.BLOB
+*.core
+*.orig
+*.tmp
+
+# Auto-generated files
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*_h.h
+*.dbmdl
+*.jfm
+*.pdb
+
+# Test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Visual Studio folder
+.vs/
+
+# Rider / ReSharper cache
+.idea/
+*.DotSettings.user
+_ReSharper*/
+_ReSharper.Caches/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+*.nuspec
+*.nuget.props
+*.nuget.targets
+packages/
+# Uncomment if using package restore
+# !packages/build/
+
+# Visual Studio Code folders
+.vscode/
+.history/
+*.code-workspace
+
+# Publish outputs
+publish/
+*.Publish.xml
+*.pubxml
+*.pubxml.user
+*.PublishSettings
+
+# Entity Framework / SQL
+*.mdf
+*.ldf
+*.ndf
+*.db
+App_Data/
+
+# Node.js (for frontends in ASP.NET or Blazor projects)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Windows image cache
+Thumbs.db
+ehthumbs.db
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Office temp files
+~$*
+
+# JetBrains Rider logs
+.idea/
+
+# Backup & temporary files
+*.tmp
+*.temp
+*.bak
+*.old
+*.orig
+
+# Others
+*.swp
+*.swo
+*.db-wal
+*.db-shm
+*.log
+*.vsidx
+*.cache
+*.ncrunchsolution
+*.ncrunchproject
+
+# Azure functions
+local.settings.json
+
+# DotCover
+.idea/.idea.DotSettings
+
+# Docker
+**/docker-compose.override.yml
+**/docker-compose.*.yml
+.docker/
+
+# Coverage reports
+coverage/
+*.coverage
+*.coveragexml
+
+# Test artifacts
+TestResults/
+nunit-*.xml
+*.trx
+
+# Local secrets / configs
+secrets.json
+appsettings.Development.json
+appsettings.Local.json
+.env
+.env.*
+
+# macOS
+.DS_Store
+
+# Windows
+Desktop.ini
+
+# Python (if used in automation scripts)
+__pycache__/
+*.pyc
