@@ -13,7 +13,7 @@ namespace Tortillas.Application.Dtos.Auth
         public string TelefonoUsuario { get; set; } = null!;
         public string? PlacasVehiculo { get; set; } = null;
         public int? Empresa { get; set; } = null;
-        public int? Rol { get; set; } = null ;
+        public int Rol { get; set; } 
         public byte Estatus { get; set; } = 1;
         public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
     }

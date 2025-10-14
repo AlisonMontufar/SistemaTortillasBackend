@@ -22,15 +22,12 @@ namespace Tortillas.Application.UseCases.Auth
 
         public async Task<Usuario?> HandleAsync(RegisterRequest request)
         {
-            
             var existingUser = await _repo.GetByUsernameAsync(request.NombreUsuario);
             if (existingUser != null) return null;
 
-       
             var existingEmail = await _repo.GetByEmailAsync(request.CorreoUsuario);
             if (existingEmail != null) return null;
 
-            
             int? fkVehiculo = null;
             if (!string.IsNullOrWhiteSpace(request.PlacasVehiculo))
             {
@@ -41,12 +38,6 @@ namespace Tortillas.Application.UseCases.Auth
                 }
             }
 
-          
-            int fkRol = 3;       
-            byte estatus = 1;     
-            int? fkEmpresa = null;
-
-          
             var usuario = new Usuario
             {
                 NombreUsuario = request.NombreUsuario,
@@ -56,11 +47,11 @@ namespace Tortillas.Application.UseCases.Auth
                 ContrasenaUsuario = _auth.HashPassword(request.ContrasenaUsuario),
                 CorreoUsuario = request.CorreoUsuario,
                 TelefonoUsuario = request.TelefonoUsuario,
-                FkEmpresa = fkEmpresa,
-                FkRol = fkRol,
+                FkEmpresa = request.Empresa,   
+                FkRol = request.Rol,           
                 FkVehiculo = fkVehiculo,
-                Estatus = estatus,
-                FechaRegistro = DateTime.UtcNow
+                Estatus = request.Estatus,
+                FechaRegistro = request.FechaRegistro
             };
 
             return await _repo.AddAsync(usuario);
