@@ -6,7 +6,7 @@ using System.Text;
 using Tortillas.Application;
 using Tortillas.Application.Services;
 using Tortillas.Application.UseCases.Auth;
-
+using Tortillas.Application.UseCases.Company;
 using Tortillas.Domain.Interfaces.Repositories;
 using Tortillas.Domain.Interfaces.Services.Auth;
 using Tortilleria.Infrastructure;
@@ -41,6 +41,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 
 
 
@@ -49,6 +50,7 @@ builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<RegisterUser>();
 builder.Services.AddScoped<LoginUser>();
 builder.Services.AddScoped<RoleUser>();
+builder.Services.AddScoped<GetAllCompanies>();
 builder.Services.AddScoped<UserEmailNotificationService>();
 // Registrar PasswordRecovery
 builder.Services.AddScoped<PasswordRecovery>();

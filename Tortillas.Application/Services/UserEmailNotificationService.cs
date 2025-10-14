@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Tortillas.Application.Notifications;
-using Tortillas.Application.Templantes.Tortillas.Application.Templates;
+using Tortillas.Application.Templates;
 using Tortillas.Domain.Interfaces.Repositories;
 using Tortillas.Domain.Interfaces.Services.Auth;
 
