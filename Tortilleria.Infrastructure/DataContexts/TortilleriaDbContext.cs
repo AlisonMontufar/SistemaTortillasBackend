@@ -9,6 +9,7 @@ namespace Tortilleria.Infrastructure.DataContexts
         public DbSet<Usuario> Usuario => Set<Usuario>();
         public DbSet<Vehiculo> Vehiculo { get; set; } = null!;
         public DbSet<Empresa> Empresa => Set<Empresa>();
+
         public DbSet<Rol> Rol => Set<Rol>();
         public DbSet<Direccion> Direccion => Set<Direccion>();
         public DbSet<Pedido> Pedido => Set<Pedido>();
