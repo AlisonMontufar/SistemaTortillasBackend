@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Tortillas.Application;
 using Tortillas.Application.Dtos.Company;
-using Tortillas.Application.UseCases.Company;
 
 namespace BackTortillas.Api.Controllers
 {

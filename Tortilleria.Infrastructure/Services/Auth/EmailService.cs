@@ -36,6 +36,12 @@ namespace Tortilleria.Infrastructure.Services.Auth
 
                 mailMessage.To.Add(to);
 
+            
+                if (!string.IsNullOrWhiteSpace(_settings.ReplyToEmail))
+                {
+                    mailMessage.ReplyToList.Add(new MailAddress(_settings.ReplyToEmail));
+                }
+
                 try
                 {
                     await client.SendMailAsync(mailMessage);

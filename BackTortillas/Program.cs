@@ -6,7 +6,6 @@ using System.Text;
 using Tortillas.Application;
 using Tortillas.Application.Services;
 using Tortillas.Application.UseCases.Auth;
-using Tortillas.Application.UseCases.Company;
 using Tortillas.Domain.Interfaces.Repositories;
 using Tortillas.Domain.Interfaces.Services.Auth;
 using Tortilleria.Infrastructure;
