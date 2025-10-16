@@ -4,7 +4,7 @@ namespace Tortillas.Application.Templates
 {
     public static class EmailTemplates
     {
-        private const string LogoUrl = "https://i.ibb.co/ccZm56TV/Logo.png";
+        private const string LogoUrl = "https://i.postimg.cc/gkxwyxxT/Logo.png";
 
         // HTML base que envuelve cualquier body
         private static string BaseHtml(string bodyContent) =>
@@ -91,5 +91,24 @@ namespace Tortillas.Application.Templates
 
             return BaseHtml(body);
         }
+        public static string GetRegistrationLinkBody(string email, string token)
+        {
+            var link = $"http://localhost:3000/registro?token={token}";
+
+            string body = $@"
+        <p>Hola,</p>
+        <p>Has sido invitado a registrarte en <b>Tortillas</b>.</p>
+        <p>Haz clic en el siguiente enlace para completar tu registro:</p>
+        <a href='{link}' target='_blank' 
+           style='background:#008c4a;color:#fff;padding:10px 15px;text-decoration:none;border-radius:5px;'>
+           Registrarme
+        </a>
+        <p>Este enlace expira en 30 minutos.</p>
+    ";
+
+            return BaseHtml(body); // ✅ Aquí se envuelve con la plantilla completa
+        }
+
+
     }
 }

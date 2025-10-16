@@ -16,5 +16,8 @@ namespace Tortillas.Application.Dtos.Auth
         public int Rol { get; set; } 
         public byte Estatus { get; set; } = 1;
         public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
+
+        // 🔹 Nuevo: token para rol desde link
+        public string? Token { get; set; } = null;
     }
 }

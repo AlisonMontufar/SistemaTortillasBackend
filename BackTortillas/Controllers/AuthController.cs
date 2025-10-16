@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Tortillas.Application.Dtos.Auth;
 using Tortillas.Application.UseCases.Auth;
+using Tortillas.Domain.Interfaces.Repositories;
 using Tortillas.Domain.Interfaces.Services.Auth;
 
 [ApiController]
@@ -11,6 +12,9 @@ public class AuthController : ControllerBase
     private readonly RegisterUser _registerUser;
     private readonly PasswordRecovery _passwordRecovery;
     private readonly IAuthService _authService;
+    private readonly IUserRepository _userRepo;
+    private readonly IJwtTokenService _jwtTokenService;
+
 
     public AuthController(
         LoginUser loginUser,
@@ -41,15 +45,21 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequest request)
     {
+        // Llamamos al UseCase
         var user = await _registerUser.HandleAsync(request);
 
         if (user == null)
+        {
+            if (request.Rol == 1 || request.Rol == 2)
+                return BadRequest(new { message = "No se puede registrar: Token inválido o rol incorrecto." });
             return BadRequest(new { message = "Username or email already exists" });
+        }
 
-        return Ok(new { message = "User registered successfully" });
+        return Ok(new { message = "User registered successfully", roleId = user.FkRol });
     }
 
- 
+
+
 
     [HttpPost("verify-recovery-code")]
     public async Task<IActionResult> VerifyRecoveryCode([FromBody] RecoveryVerifyRequest request)
