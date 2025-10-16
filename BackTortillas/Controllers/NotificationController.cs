@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Tortillas.Application.Dtos.Auth;
 using Tortillas.Application.Notifications;
 using Tortillas.Application.Services;
 using Tortillas.Application.UseCases.Auth;
+using Tortillas.Domain.Interfaces.Repositories;
+using Tortillas.Domain.Interfaces.Services.Auth;
+using Tortilleria.Infrastructure.Services.Auth;
 
 namespace Tortillas.Api.Controllers
 {
@@ -13,13 +17,22 @@ namespace Tortillas.Api.Controllers
     {
         private readonly PasswordRecovery _passwordRecovery;
         private readonly UserEmailNotificationService _emailNotification;
+        private readonly IUserRepository _userRepo;
+        private readonly IJwtTokenService _jwtTokenService;
+        private readonly SendRegistrationLink _sendRegistrationLink;
 
         public NotificationController(
             PasswordRecovery passwordRecovery,
-            UserEmailNotificationService emailNotification)
+            UserEmailNotificationService emailNotification,
+            IUserRepository userRepo,
+            IJwtTokenService jwtTokenService,
+            SendRegistrationLink sendRegistrationLink)
         {
             _passwordRecovery = passwordRecovery;
             _emailNotification = emailNotification;
+            _userRepo = userRepo;
+            _jwtTokenService = jwtTokenService;
+            _sendRegistrationLink = sendRegistrationLink;
         }
 
         [HttpPost("send")]
@@ -48,5 +61,16 @@ namespace Tortillas.Api.Controllers
 
             return Ok(new { message = "Mensaje enviado correctamente" });
         }
+        [HttpPost("send-registration-link")]
+        public async Task<IActionResult> SendRegistrationLink([FromBody] RegistrationLinkRequest request)
+        {
+            var result = await _sendRegistrationLink.HandleAsync(request);
+
+            if (!result)
+                return BadRequest(new { message = "No se pudo enviar el correo." });
+
+            return Ok(new { message = "Correo enviado correctamente." });
+        }
+
     }
 }

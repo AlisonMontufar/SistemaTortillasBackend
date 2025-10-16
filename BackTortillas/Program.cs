@@ -15,6 +15,7 @@ using Tortilleria.Infrastructure.Persistence;
 using Tortilleria.Infrastructure.Repositories;
 using Tortilleria.Infrastructure.Services.Auth;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Controllers y Swagger
@@ -41,6 +42,8 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
+builder.Services.AddScoped<IRegistrationLinkService, RegistrationLinkService>();
+
 
 
 
@@ -51,6 +54,8 @@ builder.Services.AddScoped<LoginUser>();
 builder.Services.AddScoped<RoleUser>();
 builder.Services.AddScoped<GetAllCompanies>();
 builder.Services.AddScoped<UserEmailNotificationService>();
+builder.Services.AddScoped<SendRegistrationLink>();
+
 // Registrar PasswordRecovery
 builder.Services.AddScoped<PasswordRecovery>();
 
