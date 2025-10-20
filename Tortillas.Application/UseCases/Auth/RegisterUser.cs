@@ -39,7 +39,7 @@ namespace Tortillas.Application.UseCases.Auth
             }
 
             var usuario = new Usuario
-            {
+            {         
                 NombreUsuario = request.NombreUsuario,
                 Nombre = request.Nombre,
                 ApellidoP = request.ApellidoP,
