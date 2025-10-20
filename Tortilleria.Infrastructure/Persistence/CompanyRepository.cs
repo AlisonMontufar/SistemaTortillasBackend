@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Tortillas.Domain.Entities;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using Tortillas.Domain.Interfaces.Repositories;
+using Tortillas.Domain.Entities;
 using Tortilleria.Infrastructure.DataContexts;
+using Microsoft.EntityFrameworkCore;
 
-namespace Tortilleria.Infrastructure.Persistence
+
+namespace Tortillas.Infrastructure.Persistence
 {
     public class CompanyRepository : ICompanyRepository
     {
@@ -16,10 +17,38 @@ namespace Tortilleria.Infrastructure.Persistence
             _context = context;
         }
 
-        public async Task<IEnumerable<Empresa>> GetAllAsync()
+        public async Task<int> AddEmpresaAsync(Empresa empresa)
         {
-            return await _context.Empresa.ToListAsync(); 
+            _context.Empresa.Add(empresa);
+            await _context.SaveChangesAsync();
+            return empresa.Id;
+        }
+
+        public async Task UpdateEmpresaAsync(Empresa empresa)
+        {
+            _context.Empresa.Update(empresa);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Empresa?> GetEmpresaByIdAsync(int empresaId)
+        {
+            return await _context.Empresa.FirstOrDefaultAsync(e => e.Id == empresaId);
+        }
+
+        public async Task<List<Empresa>> GetEmpresasAsync()
+        {
+            return await _context.Empresa.ToListAsync();
+        }
+
+        public async Task DeleteEmpresaAsync(int empresaId)
+        {
+            var empresa = await _context.Empresa.FirstOrDefaultAsync(e => e.Id == empresaId);
+            if (empresa != null)
+            {
+                _context.Empresa.Remove(empresa);
+                await _context.SaveChangesAsync();
+            }
         }
     }
-
 }
+

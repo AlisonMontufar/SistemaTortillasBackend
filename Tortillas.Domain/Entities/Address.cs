@@ -12,19 +12,19 @@ namespace Tortillas.Domain.Entities
 
         public int FkEmpresa { get; set; }
 
-        public string Calle { get; set; }
+        public string? Calle { get; set; }
 
-        public string Numero { get; set; }
+        public string? Numero { get; set; }
 
-        public string Colonia { get; set; }
+        public string? Colonia { get; set; }
 
-        public string Ciudad { get; set; }
+        public string? Ciudad { get; set; }
 
-        public string Estado { get; set; }
+        public string? Estado { get; set; }
 
-        public string CP { get; set; }
+        public string? CP { get; set; }
 
-        public string Referencias { get; set; }
+        public string? Referencias { get; set; }
 
         public DateTime FechaUltimaModificacion { get; set; }
     }
