@@ -17,6 +17,7 @@ using Tortilleria.Infrastructure.Services.Auth;
 using Tortillas.Infrastructure.Persistence;
 using Tortilleria.Infrastructure.Services.Address;
 using Tortillas.Application.UseCases.Company;
+using Tortillas.Application.UseCases.Order;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,6 +48,18 @@ builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IRegistrationLinkService, RegistrationLinkService>();
 builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
+// Repositorios
+builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
+builder.Services.AddScoped<IDetallePedidoRepository, DetallePedidoRepository>();
+builder.Services.AddScoped<IPagoRepository, PagoRepository>();
+
+// Handlers / UseCases
+builder.Services.AddScoped<CreatePedidoHandler>();
+builder.Services.AddScoped<GetPedidoHandler>();
+builder.Services.AddScoped<ListPedidosHandler>();
+builder.Services.AddScoped<UpdatePedidoHandler>();
+builder.Services.AddScoped<DeletePedidoHandler>();
+
 
 
 

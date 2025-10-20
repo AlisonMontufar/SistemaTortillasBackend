@@ -3,27 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MediatR;
 
-namespace Tortillas.Domain.Entities
+namespace Tortillas.Application.Dtos.Order
 {
-    public class Pedido
+    public class CreatePedidoRequest : IRequest<int>
     {
-        public int Id { get; set; }
-
         public int FkEmpresa { get; set; }
-
         public int FkUsuario { get; set; }
-
         public int FkDireccion { get; set; }
-
         public DateTime FechaEntrega { get; set; }
-
         public decimal Total { get; set; }
 
-        public DateTime FechaUltimaModificacion { get; set; }
-
-        public List<DetallePedido> Detalles { get; set; } = new();
-        public int? PagoId { get; set; }
-        public Pago? Pago { get; set; }
+        public List<DetallePedidoDto> Detalles { get; set; } = new List<DetallePedidoDto>();
+        public PagoDto Pago { get; set; }
     }
 }

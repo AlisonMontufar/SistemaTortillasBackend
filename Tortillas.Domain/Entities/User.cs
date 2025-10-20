@@ -18,11 +18,7 @@ namespace Tortillas.Domain.Entities
         public string ApellidoP { get; set; } = null!;
         public string ApellidoM { get; set; } = null!;
         public int? FkVehiculo { get; set; } = null;
-  
-   
-        /// <summary>
-        /// Recuper contraseña
-        /// </summary>
+
         public string? CodigoVerificacion { get; set; }
         public DateTime? FechaExpiracionCodigoV { get; set; }
     }
