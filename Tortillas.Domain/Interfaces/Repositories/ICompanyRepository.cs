@@ -9,6 +9,10 @@ namespace Tortillas.Domain.Interfaces.Repositories
 {
     public interface ICompanyRepository
     {
-        Task<IEnumerable<Empresa>> GetAllAsync();
+        Task<int> AddEmpresaAsync(Empresa empresa);
+        Task UpdateEmpresaAsync(Empresa empresa);
+        Task<Empresa?> GetEmpresaByIdAsync(int empresaId);
+        Task<List<Empresa>> GetEmpresasAsync();
+        Task DeleteEmpresaAsync(int empresaId);
     }
 }
