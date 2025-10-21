@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Tortillas.Application.Dtos.Rol;
 using Tortillas.Domain.Interfaces.Repositories;
 
-namespace Tortillas.Application
+namespace Tortillas.Application.UseCases.Role
 {
     public class RoleUser
     {

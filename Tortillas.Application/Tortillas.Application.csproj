@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Tortilleria.Infrastructure\Tortilleria.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCases\Company\" />
+  </ItemGroup>
+
 </Project>

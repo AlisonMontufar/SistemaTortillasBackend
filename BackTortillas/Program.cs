@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.DataProtection.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Tortillas.Application;
+using Tortillas.Application.UseCases.Role;
+using Tortillas.Application.UseCases.Sucursal;
 using Tortillas.Application.Services;
 using Tortillas.Application.UseCases.Auth;
 using Tortillas.Domain.Interfaces.Repositories;
@@ -16,7 +17,6 @@ using Tortilleria.Infrastructure.Repositories;
 using Tortilleria.Infrastructure.Services.Auth;
 using Tortillas.Infrastructure.Persistence;
 using Tortilleria.Infrastructure.Services.Address;
-using Tortillas.Application.UseCases.Company;
 using Tortillas.Application.UseCases.Order;
 
 
@@ -59,6 +59,8 @@ builder.Services.AddScoped<GetPedidoHandler>();
 builder.Services.AddScoped<ListPedidosHandler>();
 builder.Services.AddScoped<UpdatePedidoHandler>();
 builder.Services.AddScoped<DeletePedidoHandler>();
+builder.Services.AddScoped<ISucursalRepository, SucursalRepository>();
+
 
 
 

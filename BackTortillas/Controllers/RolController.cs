@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tortillas.Application.Dtos.Rol;
-using Tortillas.Application;
+using Tortillas.Application.UseCases.Role;
 
 namespace BackTortillas.Api.Controllers
 {
