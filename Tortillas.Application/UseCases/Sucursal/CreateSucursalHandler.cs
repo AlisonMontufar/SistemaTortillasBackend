@@ -26,7 +26,7 @@ namespace Tortillas.Application.UseCases.Sucursal
         public async Task<CreateSucursalResponse> Handle(CreateSucursalRequest request)
         {
             // 1️⃣ Enviar link de registro al encargado
-            var sent = await _notificationService.SendRegistrationLinkAsync(request.EmailEncargado, 2);
+            var sent = await _notificationService.SendRegistrationLinkAsync(request.CorreoElectronico, 2);
             if (!sent)
                 throw new Exception("No se pudo enviar el enlace de registro al encargado.");
 
@@ -35,9 +35,9 @@ namespace Tortillas.Application.UseCases.Sucursal
             {
                 NombreSucursal = request.NombreSucursal,
                 Telefono = request.Telefono,
-                CorreoElectronico = request.EmailEncargado,
+                CorreoElectronico = request.CorreoElectronico,
                 NombreEncargado = request.NombreEncargado,
-                EmpresaId = request.EmpresaId,
+                FkEmpresa = request.FkEmpresa,
                 FechaRegistro = DateTime.Now,
                 Estatus = 1
             };

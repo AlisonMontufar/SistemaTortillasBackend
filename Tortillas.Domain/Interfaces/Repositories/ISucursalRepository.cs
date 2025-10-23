@@ -13,7 +13,7 @@ namespace Tortillas.Domain.Interfaces.Repositories
         Task UpdateSucursalAsync(Sucursal sucursal);
         Task DeleteSucursalAsync(int sucursalId);
         Task<Sucursal?> GetSucursalByIdAsync(int sucursalId);
-        Task<List<Sucursal>> GetSucursalesByEmpresaAsync(int empresaId);
+        Task<List<Sucursal>> GetSucursalesByEmpresaAsync(int FkEmpresa);
         Task<List<Sucursal>> GetSucursalesAsync();
     }
 }

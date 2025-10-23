@@ -11,9 +11,9 @@ namespace Tortillas.Application.Dtos.Sucursal
         public int SucursalId { get; set; }
         public string NombreSucursal { get; set; } = string.Empty;
         public string Telefono { get; set; } = string.Empty;
-        public string EmailEncargado { get; set; } = string.Empty;
+        public string CorreoElectronico { get; set; } = string.Empty;
         public string NombreEncargado { get; set; } = string.Empty;
-        public int EmpresaId { get; set; }
+        public int FkEmpresa { get; set; }
         public byte Estatus { get; set; }
     }
 }

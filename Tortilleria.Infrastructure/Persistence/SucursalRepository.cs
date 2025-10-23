@@ -21,7 +21,7 @@ namespace Tortilleria.Infrastructure.Persistence
 
         public async Task<int> AddSucursalAsync(Sucursal sucursal)
         {
-            _context.Sucursal.Add(sucursal);
+            await _context.Sucursal.AddAsync(sucursal);
             await _context.SaveChangesAsync();
             return sucursal.Id;
         }
@@ -45,20 +45,21 @@ namespace Tortilleria.Infrastructure.Persistence
         public async Task<Sucursal?> GetSucursalByIdAsync(int sucursalId)
         {
             return await _context.Sucursal
-                .Include(s => s.Empresa)
                 .FirstOrDefaultAsync(s => s.Id == sucursalId);
         }
 
-        public async Task<List<Sucursal>> GetSucursalesByEmpresaAsync(int empresaId)
+        public async Task<List<Sucursal>> GetSucursalesByEmpresaAsync(int fkEmpresa)
         {
             return await _context.Sucursal
-                .Where(s => s.EmpresaId == empresaId)
+                .Where(s => s.FkEmpresa == fkEmpresa)
                 .ToListAsync();
         }
 
         public async Task<List<Sucursal>> GetSucursalesAsync()
         {
-            return await _context.Sucursal.Include(s => s.Empresa).ToListAsync();
+            return await _context.Sucursal
+                .ToListAsync();
         }
+
     }
 }

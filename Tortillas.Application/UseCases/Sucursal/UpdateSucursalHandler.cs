@@ -27,19 +27,19 @@ namespace Tortillas.Application.UseCases.Sucursal
                 throw new Exception("Sucursal no encontrada");
 
             // Si cambió el encargado, enviar nuevo link
-            if (!string.Equals(sucursal.CorreoElectronico, request.EmailEncargado, StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(sucursal.CorreoElectronico, request.CorreoElectronico, StringComparison.OrdinalIgnoreCase))
             {
-                var sent = await _notificationService.SendRegistrationLinkAsync(request.EmailEncargado, 2);
+                var sent = await _notificationService.SendRegistrationLinkAsync(request.CorreoElectronico, 2);
                 if (!sent)
                     throw new Exception("No se pudo enviar el enlace al nuevo encargado.");
-                sucursal.CorreoElectronico = request.EmailEncargado;
+                sucursal.CorreoElectronico = request.CorreoElectronico;
             }
 
             sucursal.NombreSucursal = request.NombreSucursal;
             sucursal.Telefono = request.Telefono;
             sucursal.NombreEncargado = request.NombreEncargado;
             sucursal.Estatus = request.Estatus;
-            sucursal.EmpresaId = request.EmpresaId;
+            sucursal.FkEmpresa = request.FkEmpresa;
 
             await _sucursalRepository.UpdateSucursalAsync(sucursal);
 

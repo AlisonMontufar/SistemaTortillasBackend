@@ -12,8 +12,7 @@ namespace Tortillas.Domain.Entities
         public DateTime FechaRegistro { get; set; } = DateTime.Now;
         public byte Estatus { get; set; } = 1;
 
-        // 🔹 Llave foránea hacia Empresa
-        public int EmpresaId { get; set; }
-        public Empresa Empresa { get; set; } = null!;
+        // Llave foránea hacia Empresa
+        public int FkEmpresa { get; set; }
     }
 }

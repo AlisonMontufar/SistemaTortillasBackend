@@ -16,10 +16,11 @@ namespace BackTortillas.Api.Controllers
         private readonly DeleteSucursalHandler _deleteHandler;
         private readonly GetSucursalesHandler _getHandler;
 
-        public SucursalController(CreateSucursalHandler createHandler,
-                                  UpdateSucursalHandler updateHandler,
-                                  DeleteSucursalHandler deleteHandler,
-                                  GetSucursalesHandler getHandler)
+        public SucursalController(
+            CreateSucursalHandler createHandler,
+            UpdateSucursalHandler updateHandler,
+            DeleteSucursalHandler deleteHandler,
+            GetSucursalesHandler getHandler)
         {
             _createHandler = createHandler;
             _updateHandler = updateHandler;

@@ -9,9 +9,9 @@ namespace Tortillas.Application.Dtos.Sucursal
     public class CreateSucursalRequest
     {
         public string NombreSucursal { get; set; } = string.Empty;
-        public string Telefono { get; set; } = string.Empty;
-        public string EmailEncargado { get; set; } = string.Empty;
-        public string NombreEncargado { get; set; } = string.Empty;
-        public int EmpresaId { get; set; }
+        public string? Telefono { get; set; }
+        public string? CorreoElectronico { get; set; }  // coincide con la entity
+        public string? NombreEncargado { get; set; }
+        public int FkEmpresa { get; set; }  // coincide con la entity
     }
 }

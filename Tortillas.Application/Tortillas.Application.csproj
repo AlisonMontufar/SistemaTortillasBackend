@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UseCases\Company\**" />
+    <EmbeddedResource Remove="UseCases\Company\**" />
+    <None Remove="UseCases\Company\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="15.0.1" />
     <PackageReference Include="MediatR" Version="13.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.9" />
@@ -16,10 +22,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Tortillas.Domain\Tortillas.Domain.csproj" />
     <ProjectReference Include="..\Tortilleria.Infrastructure\Tortilleria.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="UseCases\Company\" />
   </ItemGroup>
 
 </Project>

@@ -25,11 +25,10 @@ namespace Tortillas.Application.UseCases.Sucursal
             {
                 SucursalId = s.Id,
                 NombreSucursal = s.NombreSucursal,
-                EmailEncargado = s.CorreoElectronico,
+                CorreoElectronico = s.CorreoElectronico,
                 Telefono = s.Telefono,
                 NombreEncargado = s.NombreEncargado,
-                EmpresaId = s.EmpresaId,
-                EmpresaNombre = s.Empresa?.NombreEmpresa
+                FkEmpresa = s.FkEmpresa
             }).ToList();
         }
     }
