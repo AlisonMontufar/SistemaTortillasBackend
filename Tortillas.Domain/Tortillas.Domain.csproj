@@ -7,11 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Interfaces\Services\Address\**" />
+    <EmbeddedResource Remove="Interfaces\Services\Address\**" />
+    <None Remove="Interfaces\Services\Address\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="StackExchange.Redis" Version="2.9.32" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\Services\Address\" />
     <Folder Include="Interfaces\Services\Role\" />
   </ItemGroup>
 

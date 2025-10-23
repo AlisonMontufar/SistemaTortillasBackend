@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tortillas.Application.Dtos.Address
+namespace Tortillas.Application.Dtos.Sucursal
 {
     public class DeleteSucursalResponse
     {
-        public string Mensaje { get; set; }
+        public string Mensaje { get; set; } = string.Empty;
     }
 }
