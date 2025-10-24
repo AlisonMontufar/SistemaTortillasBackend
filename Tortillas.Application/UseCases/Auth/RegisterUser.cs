@@ -71,7 +71,7 @@ namespace Tortillas.Application.UseCases.Auth
                 ContrasenaUsuario = _auth.HashPassword(request.ContrasenaUsuario),
                 CorreoUsuario = request.CorreoUsuario,
                 TelefonoUsuario = request.TelefonoUsuario,
-                FkEmpresa = request.Empresa,
+                FkEmpresa = request.FkEmpresa,
                 FkRol = request.Rol,
                 FkVehiculo = fkVehiculo,
                 Estatus = request.Estatus,
