@@ -14,5 +14,7 @@ namespace Tortillas.Domain.Entities
 
         // Llave foránea hacia Empresa
         public int FkEmpresa { get; set; }
+
+
     }
 }
