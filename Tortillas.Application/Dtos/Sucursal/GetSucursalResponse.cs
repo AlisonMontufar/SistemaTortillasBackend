@@ -14,5 +14,8 @@ namespace Tortillas.Application.Dtos.Sucursal
         public string? CorreoElectronico { get; set; }
         public string? NombreEncargado { get; set; }
         public int FkEmpresa { get; set; }
+
+        // Nuevo campo para mostrar el nombre de la empresa
+        public string? NombreEmpresa { get; set; }
     }
 }

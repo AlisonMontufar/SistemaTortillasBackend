@@ -34,7 +34,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tortillas.Application\Tortillas.Application.csproj" />
-    <ProjectReference Include="..\Tortilleria.Infrastructure\Tortilleria.Infrastructure.csproj" />
+    <ProjectReference Include="..\Tortillas.Infrastructure\Tortillas.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
