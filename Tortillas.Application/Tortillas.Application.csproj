@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tortillas.Domain\Tortillas.Domain.csproj" />
-    <ProjectReference Include="..\Tortilleria.Infrastructure\Tortilleria.Infrastructure.csproj" />
+    <ProjectReference Include="..\Tortillas.Infrastructure\Tortillas.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackTortillas.Api", "BackTo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tortillas.Domain", "..\Tortillas.Domain\Tortillas.Domain.csproj", "{4E628059-020A-4FFC-8058-7DF752A05D4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tortilleria.Infrastructure", "..\Tortilleria.Infrastructure\Tortilleria.Infrastructure.csproj", "{B820C9C0-2DBD-4BB4-9002-B4C8A6085F33}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tortillas.Infrastructure", "..\Tortillas.Infrastructure\Tortillas.Infrastructure.csproj", "{B820C9C0-2DBD-4BB4-9002-B4C8A6085F33}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tortillas.Application", "..\Tortillas.Application\Tortillas.Application.csproj", "{AAD9F7F2-9CCE-4A6F-846D-CEA2F768C9D6}"
 EndProject
