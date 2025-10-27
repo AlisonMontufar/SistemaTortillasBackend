@@ -7,7 +7,7 @@ using Tortillas.Application.Services;
 using Tortillas.Application.UseCases.Auth;
 using Tortillas.Domain.Interfaces.Repositories;
 using Tortillas.Domain.Interfaces.Services.Auth;
-using Tortilleria.Infrastructure.Services.Auth;
+using Tortillas.Infrastructure.Services.Auth;
 
 namespace Tortillas.Api.Controllers
 {
