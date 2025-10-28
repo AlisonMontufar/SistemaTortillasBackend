@@ -38,9 +38,9 @@ namespace BackTortillas.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetEmpresas()
+        public async Task<ActionResult<List<EmpresaDto>>> GetEmpresas(CancellationToken cancellationToken)
         {
-            var empresas = await _mediator.Send(new GetEmpresasQuery());
+            var empresas = await _mediator.Send(new GetEmpresasQuery(), cancellationToken);
             return Ok(empresas);
         }
 

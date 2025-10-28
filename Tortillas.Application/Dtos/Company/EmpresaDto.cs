@@ -13,5 +13,7 @@ namespace Tortillas.Application.Dtos.Company
         public string Logo { get; set; } = string.Empty;
         public DateTime FechaRegistro { get; set; }
         public int Estatus { get; set; }
+
+        public int NumeroPedidos { get; set; }
     }
 }

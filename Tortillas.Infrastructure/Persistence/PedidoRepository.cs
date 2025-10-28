@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tortillas.Domain.Entities;
 using Tortillas.Domain.Interfaces.Repositories;
 using Tortillas.Infrastructure.DataContexts;
-using Microsoft.EntityFrameworkCore;
 
 namespace Tortillas.Infrastructure.Persistence
 {
@@ -86,5 +87,40 @@ namespace Tortillas.Infrastructure.Persistence
             }
         }
 
+        public async Task<IEnumerable<PedidoDetalleEmpresa>> GetPedidosByEmpresaAsync(int idEmpresa)
+        {
+            var result = await (
+                from e in _context.Empresa
+                join s in _context.Sucursal on e.Id equals s.FkEmpresa
+                join d in _context.Direccion on s.Id equals d.Id
+                join p in _context.Pedido on s.Id equals p.FkSucursal
+                join dp in _context.DetallePedido on p.Id equals dp.FkPedido
+                where e.Id == idEmpresa
+                select new PedidoDetalleEmpresa
+                {
+                    IdEmpresa = e.Id,
+                    NombreEmpresa = e.NombreEmpresa,
+                    IdSucursal = s.Id,
+                    NombreSucursal = s.NombreSucursal,
+                    Calle = d.Calle,
+                    Numero = d.Numero,
+                    Colonia = d.Colonia,
+                    Ciudad = d.Ciudad,
+                    Estado = d.Estado,
+                    CP = d.CP,
+                    Referencias = d.Referencias,
+                    IdPedido = p.Id,
+                    Total = p.Total,
+                    FechaEntrega = p.FechaEntrega,
+                    IdDetalle = dp.Id,
+                    ProductoNombre = dp.ProductoNombre,
+                    Cantidad = (int)dp.Cantidad,
+                    EstatusNombre = dp.EstatusNombre
+                }
+            ).ToListAsync();
+
+            return result;
+        }
     }
+    
 }

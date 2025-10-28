@@ -13,15 +13,17 @@ namespace BackTortillas.Api.Controllers
         private readonly ListPedidosHandler _list;
         private readonly UpdatePedidoHandler _update;
         private readonly DeletePedidoHandler _delete;
-
+        private readonly GetPedidosByEmpresaHandler _getByEmpresa;
         public PedidoController(CreatePedidoHandler create, GetPedidoHandler get, ListPedidosHandler list,
-                                UpdatePedidoHandler update, DeletePedidoHandler delete)
+                                UpdatePedidoHandler update, DeletePedidoHandler delete , GetPedidosByEmpresaHandler getByEmpresa)
         {
             _create = create;
             _get = get;
             _list = list;
             _update = update;
             _delete = delete;
+            _getByEmpresa = getByEmpresa;
+
         }
 
         [HttpPost]
@@ -62,6 +64,14 @@ namespace BackTortillas.Api.Controllers
         {
             var request = new DeletePedidoRequest { PedidoId = pedidoId };
             var result = await _delete.Handle(request, cancellationToken);
+            return Ok(result);
+        }
+
+        [HttpGet("Empresa/{empresaId}")]
+        public async Task<IActionResult> GetByEmpresa(int empresaId, CancellationToken cancellationToken)
+        {
+            var request = new GetPedidosByEmpresaRequest { EmpresaId = empresaId };
+            var result = await _getByEmpresa.Handle(request, cancellationToken);
             return Ok(result);
         }
 

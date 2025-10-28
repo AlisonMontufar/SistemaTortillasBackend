@@ -25,7 +25,7 @@ namespace Tortillas.Application.UseCases.Order
             // Construir pedido con detalles y pago
             var pedido = new Pedido
             {
-                FkEmpresa = request.FkEmpresa,
+                FkSucursal = request.FkSucursal,
                 FkUsuario = request.FkUsuario,
                 FkDireccion = request.FkDireccion,
                 FechaEntrega = request.FechaEntrega,
