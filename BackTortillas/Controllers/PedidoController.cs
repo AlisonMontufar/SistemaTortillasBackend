@@ -8,6 +8,7 @@ namespace BackTortillas.Api.Controllers
     [Route("api/v1/[controller]")]
     public class PedidoController : ControllerBase
     {
+<<<<<<< Updated upstream
         private readonly CreatePedidoHandler _create;
         private readonly GetPedidoHandler _get;
         private readonly ListPedidosHandler _list;
@@ -24,23 +25,32 @@ namespace BackTortillas.Api.Controllers
             _delete = delete;
             _getByEmpresa = getByEmpresa;
 
+=======
+        private readonly CreatePedidoHandler _createHandler;
+        private readonly GetPedidoHandler _getHandler;
+
+        public PedidoController(CreatePedidoHandler createHandler, GetPedidoHandler getHandler)
+        {
+            _createHandler = createHandler;
+            _getHandler = getHandler;
+>>>>>>> Stashed changes
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreatePedidoRequest request, CancellationToken cancellationToken)
+        public async Task<IActionResult> Create([FromBody] CreatePedidoRequest request)
         {
-            var result = await _create.Handle(request, cancellationToken);
+            var result = await _createHandler.Handle(request);
             return Ok(result);
         }
 
-        // GET pedido por Id
-        [HttpGet("{pedidoId}")]
-        public async Task<IActionResult> Get(int pedidoId, CancellationToken cancellationToken)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
         {
-            var request = new GetPedidoRequest { PedidoId = pedidoId };
-            var result = await _get.Handle(request, cancellationToken);
-            return Ok(result);
+            var pedido = await _getHandler.Handle(id);
+            if (pedido == null) return NotFound();
+            return Ok(pedido);
         }
+<<<<<<< Updated upstream
 
         // GET lista de pedidos
         [HttpGet]
@@ -75,6 +85,7 @@ namespace BackTortillas.Api.Controllers
             return Ok(result);
         }
 
+=======
+>>>>>>> Stashed changes
     }
-
 }

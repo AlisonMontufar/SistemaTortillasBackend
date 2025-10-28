@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tortillas.Application.Dtos.OrderDetails;
+using Tortillas.Application.Dtos.Pay;
 
 namespace Tortillas.Application.Dtos.Order
 {
@@ -16,11 +18,7 @@ namespace Tortillas.Application.Dtos.Order
         public decimal Total { get; set; }
         public DateTime FechaUltimaModificacion { get; set; }
 
-        // Lista de subpedidos
-        public List<DetallePedidoDto> Detalles { get; set; } = new List<DetallePedidoDto>();
-
-        // Información de pago
-        public PagoDto Pago { get; set; }
+        public List<DetallePedidoDto> Detalles { get; set; } = new();
+        public PagoDto? Pago { get; set; }
     }
-
 }

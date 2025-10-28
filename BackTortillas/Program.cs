@@ -65,17 +65,17 @@ builder.Services.AddScoped<ISucursalRepository, SucursalRepository>();
 builder.Services.AddScoped<IEmpresaRepository, EmpresaRepository>();
 builder.Services.AddScoped<IDireccionRepository, DireccionRepository>();
 
+<<<<<<< Updated upstream
 builder.Services.AddScoped<GetPedidosByEmpresaHandler>();
 
 
 
+=======
+>>>>>>> Stashed changes
 
 // UseCases
 builder.Services.AddScoped<CreatePedidoHandler>();
 builder.Services.AddScoped<GetPedidoHandler>();
-builder.Services.AddScoped<ListPedidosHandler>();
-builder.Services.AddScoped<UpdatePedidoHandler>();
-builder.Services.AddScoped<DeletePedidoHandler>();
 builder.Services.AddScoped<CreateSucursalHandler>();
 builder.Services.AddScoped<UpdateSucursalHandler>();
 builder.Services.AddScoped<DeleteSucursalHandler>();

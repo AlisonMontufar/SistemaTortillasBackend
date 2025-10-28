@@ -4,31 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tortillas.Application.Dtos.Order;
+using Tortillas.Application.Dtos.OrderDetails;
+using Tortillas.Application.Dtos.Pay;
 using Tortillas.Domain.Interfaces.Repositories;
-using Tortillas.Domain.Entities;
-using MediatR;
-
-
 
 namespace Tortillas.Application.UseCases.Order
 {
-    public class GetPedidoHandler : IRequestHandler<GetPedidoRequest, PedidoDto>
+    public class GetPedidoHandler
     {
         private readonly IPedidoRepository _pedidoRepo;
         private readonly IDetallePedidoRepository _detalleRepo;
+        private readonly IPagoRepository _pagoRepo;
 
-        public GetPedidoHandler(IPedidoRepository pedidoRepo, IDetallePedidoRepository detalleRepo)
+        public GetPedidoHandler(IPedidoRepository pedidoRepo,
+                                IDetallePedidoRepository detalleRepo,
+                                IPagoRepository pagoRepo)
         {
             _pedidoRepo = pedidoRepo;
             _detalleRepo = detalleRepo;
+            _pagoRepo = pagoRepo;
         }
 
-        public async Task<PedidoDto> Handle(GetPedidoRequest request, CancellationToken cancellationToken)
+        public async Task<PedidoDto?> Handle(int pedidoId)
         {
-            var pedido = await _pedidoRepo.GetPedidoByIdAsync(request.PedidoId);
-            if (pedido == null) return null!;
+            var pedido = await _pedidoRepo.GetPedidoByIdAsync(pedidoId);
+            if (pedido == null) return null;
 
-            var detalles = await _detalleRepo.GetAllDetallesAsync(pedido.Id);
+            var detalles = await _detalleRepo.GetAllDetallesByPedidoAsync(pedidoId);
+            var pago = await _pagoRepo.GetPagoByPedidoAsync(pedidoId);
 
             return new PedidoDto
             {
@@ -39,7 +42,7 @@ namespace Tortillas.Application.UseCases.Order
                 FechaEntrega = pedido.FechaEntrega,
                 Total = pedido.Total,
                 FechaUltimaModificacion = pedido.FechaUltimaModificacion,
-                Detalles = pedido.Detalles?.Select(d => new DetallePedidoDto
+                Detalles = detalles.Select(d => new DetallePedidoDto
                 {
                     Id = d.Id,
                     FkPedido = d.FkPedido,
@@ -50,22 +53,20 @@ namespace Tortillas.Application.UseCases.Order
                     FechaHora = d.FechaHora,
                     FechaUltimaModificacion = d.FechaUltimaModificacion,
                     NombreSucursal = d.NombreSucursal
-                }).ToList() ?? new List<DetallePedidoDto>(),
-                Pago = pedido.Pago == null ? null : new PagoDto
+                }).ToList(),
+                Pago = pago == null ? null : new PagoDto
                 {
-                    Id = pedido.Pago!.Id,
-                    FkPedido = pedido.Pago!.FkPedido,
-                    NombreTitular = pedido.Pago!.NombreTitular ?? string.Empty,
-                    MetodoPago = pedido.Pago!.MetodoPago,
-                    NumeroEnmascarado = pedido.Pago!.NumeroEnmascarado,
-                    MarcaTarjeta = pedido.Pago!.MarcaTarjeta,
-                    ExpMes = pedido.Pago!.ExpMes ?? 0,
-                    ExpAnio = pedido.Pago!.ExpAnio ?? 0,
-                    FechaRegistro = pedido.Pago!.FechaRegistro
+                    Id = pago.Id,
+                    FkPedido = pago.FkPedido,
+                    MetodoPago = pago.MetodoPago,
+                    NumeroEnmascarado = pago.NumeroEnmascarado,
+                    MarcaTarjeta = pago.MarcaTarjeta,
+                    ExpMes = pago.ExpMes,
+                    ExpAnio = pago.ExpAnio,
+                    NombreTitular = pago.NombreTitular,
+                    FechaRegistro = pago.FechaRegistro
                 }
-
             };
-
         }
     }
 
