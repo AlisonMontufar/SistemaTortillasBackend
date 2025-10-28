@@ -65,7 +65,7 @@ builder.Services.AddScoped<ISucursalRepository, SucursalRepository>();
 builder.Services.AddScoped<IEmpresaRepository, EmpresaRepository>();
 builder.Services.AddScoped<IDireccionRepository, DireccionRepository>();
 
-
+builder.Services.AddScoped<GetPedidosByEmpresaHandler>();
 
 
 

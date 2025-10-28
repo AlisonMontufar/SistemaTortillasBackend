@@ -14,5 +14,7 @@ namespace Tortillas.Domain.Entities
         public DateTime FechaRegistro { get; set; } = DateTime.Now;
         public int Estatus { get; set; } = 1;
 
+        public List<Pedido> Pedidos { get; set; } = new();
+
     }
 }

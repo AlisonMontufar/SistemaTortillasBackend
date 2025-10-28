@@ -10,8 +10,8 @@ namespace Tortillas.Domain.Entities
     {
         public int Id { get; set; }
 
-        public int FkEmpresa { get; set; }
 
+        public int FkSucursal { get; set; }
         public int FkUsuario { get; set; }
 
         public int FkDireccion { get; set; }
@@ -25,5 +25,7 @@ namespace Tortillas.Domain.Entities
         public List<DetallePedido> Detalles { get; set; } = new();
         public int? PagoId { get; set; }
         public Pago? Pago { get; set; }
+
+      
     }
 }

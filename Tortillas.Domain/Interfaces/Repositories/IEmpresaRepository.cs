@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tortillas.Domain.Entities;
 
+
 namespace Tortillas.Domain.Interfaces.Repositories
 {
     public interface IEmpresaRepository
@@ -14,6 +15,8 @@ namespace Tortillas.Domain.Interfaces.Repositories
         Task DeleteEmpresaAsync(int empresaId);
         Task<Empresa?> GetEmpresaByIdAsync(int id);
         Task<List<Empresa>> GetEmpresasAsync();
+
+       
     }
 }
 

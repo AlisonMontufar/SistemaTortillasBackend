@@ -9,7 +9,7 @@ namespace Tortillas.Application.Dtos.Order
     public class PedidoDto
     {
         public int Id { get; set; }
-        public int FkEmpresa { get; set; }
+        public int FkSucursal { get; set; }
         public int FkUsuario { get; set; }
         public int FkDireccion { get; set; }
         public DateTime FechaEntrega { get; set; }
