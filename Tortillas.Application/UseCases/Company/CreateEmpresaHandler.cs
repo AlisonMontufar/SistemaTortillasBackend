@@ -16,7 +16,7 @@ namespace Tortillas.Application.UseCases.Company
         public CreateEmpresaHandler(IEmpresaRepository empresaRepository)
         {
             _empresaRepository = empresaRepository;
-        }
+        }   
 
         public async Task<int> Handle(CreateEmpresaCommand request, CancellationToken cancellationToken)
         {
