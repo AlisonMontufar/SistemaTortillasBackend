@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Tortillas.Domain.Interfaces.Repositories;
 
-namespace Tortilleria.Infrastructure.Services.Address
+namespace Tortillas.Infrastructure.Services.Address
 {
     public class NotificationService : INotificationService
     {

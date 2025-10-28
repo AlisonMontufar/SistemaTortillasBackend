@@ -2,15 +2,15 @@
 using System.Threading.Tasks;
 using Tortillas.Domain.Entities;
 using Tortillas.Domain.Interfaces.Repositories;
-using Tortilleria.Infrastructure.DataContexts;
+using Tortillas.Infrastructure.DataContexts;
 
-namespace Tortilleria.Infrastructure.Persistence
+namespace Tortillas.Infrastructure.Persistence
 {
     public class UserRepository : IUserRepository
     {
-        private readonly TortilleriaDbContext _context;
+        private readonly TortillasDbContext _context;
 
-        public UserRepository(TortilleriaDbContext context)
+        public UserRepository(TortillasDbContext context)
         {
             _context = context;
         }

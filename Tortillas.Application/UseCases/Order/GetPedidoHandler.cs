@@ -33,7 +33,7 @@ namespace Tortillas.Application.UseCases.Order
             return new PedidoDto
             {
                 Id = pedido.Id,
-                FkEmpresa = pedido.FkEmpresa,
+                FkSucursal = pedido.FkSucursal,
                 FkUsuario = pedido.FkUsuario,
                 FkDireccion = pedido.FkDireccion,
                 FechaEntrega = pedido.FechaEntrega,

@@ -2,15 +2,15 @@
 using Microsoft.EntityFrameworkCore;
 using Tortillas.Domain.Entities;
 using Tortillas.Domain.Interfaces.Repositories;
-using Tortilleria.Infrastructure.DataContexts;
+using Tortillas.Infrastructure.DataContexts;
 
-namespace Tortilleria.Infrastructure.Repositories
+namespace Tortillas.Infrastructure.Repositories
 {
     public class VehiculoRepository : IVehiculoRepository
     {
-        private readonly TortilleriaDbContext _context;
+        private readonly TortillasDbContext _context;
 
-        public VehiculoRepository(TortilleriaDbContext context)
+        public VehiculoRepository(TortillasDbContext context)
         {
             _context = context;
         }

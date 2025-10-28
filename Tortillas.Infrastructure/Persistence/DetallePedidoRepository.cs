@@ -5,16 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Tortillas.Domain.Entities;
 using Tortillas.Domain.Interfaces.Repositories;
-using Tortilleria.Infrastructure.DataContexts;
+using Tortillas.Infrastructure.DataContexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace Tortilleria.Infrastructure.Persistence
+namespace Tortillas.Infrastructure.Persistence
 {
     public class DetallePedidoRepository : IDetallePedidoRepository
     {
-        private readonly TortilleriaDbContext _context;
+        private readonly TortillasDbContext _context;
 
-        public DetallePedidoRepository(TortilleriaDbContext context)
+        public DetallePedidoRepository(TortillasDbContext context)
         {
             _context = context;
         }

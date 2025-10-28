@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tortillas.Domain.Entities;
 
+
 namespace Tortillas.Domain.Interfaces.Repositories
 {
     public interface IPedidoRepository
@@ -15,5 +16,8 @@ namespace Tortillas.Domain.Interfaces.Repositories
         Task UpdatePedidoAsync(Pedido pedido);                 // actualizar pedido
         Task DeletePedidoAsync(int pedidoId);                  // eliminar pedido
         Task SavePagoAsync(int pedidoId, Pago pago);
+        Task<IEnumerable<PedidoDetalleEmpresa>> GetPedidosByEmpresaAsync(int idEmpresa);
+
+
     }
 }

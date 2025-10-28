@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Tortillas.Domain.Entities;
 using Tortillas.Domain.Interfaces.Repositories;
-using Tortilleria.Infrastructure.DataContexts;
+using Tortillas.Infrastructure.DataContexts;
 
-namespace Tortilleria.Infrastructure.Persistence
+namespace Tortillas.Infrastructure.Persistence
 {
     public class SucursalRepository : ISucursalRepository
     {
-        private readonly TortilleriaDbContext _context;
+        private readonly TortillasDbContext _context;
 
-        public SucursalRepository(TortilleriaDbContext context)
+        public SucursalRepository(TortillasDbContext context)
         {
             _context = context;
         }
@@ -48,18 +46,16 @@ namespace Tortilleria.Infrastructure.Persistence
                 .FirstOrDefaultAsync(s => s.Id == sucursalId);
         }
 
+        public async Task<List<Sucursal>> GetSucursalesAsync()
+        {
+            return await _context.Sucursal.ToListAsync();
+        }
+
         public async Task<List<Sucursal>> GetSucursalesByEmpresaAsync(int fkEmpresa)
         {
             return await _context.Sucursal
                 .Where(s => s.FkEmpresa == fkEmpresa)
                 .ToListAsync();
         }
-
-        public async Task<List<Sucursal>> GetSucursalesAsync()
-        {
-            return await _context.Sucursal
-                .ToListAsync();
-        }
-
     }
 }

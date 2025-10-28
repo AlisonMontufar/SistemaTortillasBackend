@@ -4,9 +4,9 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Tortillas.Domain.Interfaces.Services.Auth;
-using Tortilleria.Infrastructure.Configuration;
+using Tortillas.Infrastructure.Configuration;
 
-namespace Tortilleria.Infrastructure.Services.Auth
+namespace Tortillas.Infrastructure.Services.Auth
 {
     public class EmailService : IEmailService
     {

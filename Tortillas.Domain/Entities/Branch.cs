@@ -13,6 +13,9 @@ namespace Tortillas.Domain.Entities
         public byte Estatus { get; set; } = 1;
 
         // Llave foránea hacia Empresa
+        public int FkDireccion { get; set; }
         public int FkEmpresa { get; set; }
+
+
     }
 }

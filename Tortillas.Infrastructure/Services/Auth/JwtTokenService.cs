@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Tortillas.Domain.Interfaces.Services.Auth;
 
 
-namespace Tortilleria.Infrastructure.Services.Auth
+namespace Tortillas.Infrastructure.Services.Auth
 {
     public class JwtTokenService : IJwtTokenService
     {

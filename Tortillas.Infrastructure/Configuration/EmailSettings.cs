@@ -1,4 +1,4 @@
-﻿namespace Tortilleria.Infrastructure.Configuration
+﻿namespace Tortillas.Infrastructure.Configuration
 {
     public class EmailSettings
     {

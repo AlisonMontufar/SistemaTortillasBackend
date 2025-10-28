@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Tortillas.Domain.Entities;
 using Tortillas.Domain.Interfaces.Repositories;
-using Tortilleria.Infrastructure.DataContexts;
+using Tortillas.Infrastructure.DataContexts;
 
-namespace Tortilleria.Infrastructure.Persistence
+namespace Tortillas.Infrastructure.Persistence
 {
     public class PagoRepository : IPagoRepository
     {
-        private readonly TortilleriaDbContext _context;
-        public PagoRepository(TortilleriaDbContext context) => _context = context;
+        private readonly TortillasDbContext _context;
+        public PagoRepository(TortillasDbContext context) => _context = context;
 
         public async Task<int> AddPagoAsync(Pago pago)
         {

@@ -32,7 +32,7 @@ namespace Tortillas.Application.UseCases.Order
                 result.Add(new PedidoDto
                 {
                     Id = pedido.Id,
-                    FkEmpresa = pedido.FkEmpresa,
+                    FkSucursal = pedido.FkSucursal,
                     FkUsuario = pedido.FkUsuario,
                     FkDireccion = pedido.FkDireccion,
                     FechaEntrega = pedido.FechaEntrega,

@@ -4,15 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Tortillas.Domain.Entities;
 using Tortillas.Domain.Interfaces.Repositories;
-using Tortilleria.Infrastructure.DataContexts;
+using Tortillas.Infrastructure.DataContexts;
 
-namespace Tortilleria.Infrastructure.Persistence
+namespace Tortillas.Infrastructure.Persistence
 {
     public class RoleRepository : IRoleRepository
     {
-        private readonly TortilleriaDbContext _context;
+        private readonly TortillasDbContext _context;
 
-        public RoleRepository(TortilleriaDbContext context)
+        public RoleRepository(TortillasDbContext context)
         {
             _context = context;
         }
