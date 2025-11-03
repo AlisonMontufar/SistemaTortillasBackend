@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Tortillas.Application.Dtos.Order
+{
+    public class DetallePedidoDto
+    {
+        public int Id { get; set; }
+        public int FkPedido { get; set; }
+        public int FkDireccion { get; set; }
+        public string? ProductoNombre { get; set; }
+        public decimal Cantidad { get; set; }  // Kg
+        public string? EstatusNombre { get; set; }
+        public DateTime FechaUltimaModificacion { get; set; }
+        public DateTime FechaHora { get; set; }
+        public string? NombreSucursal { get; set; }
+    }
+
+}
