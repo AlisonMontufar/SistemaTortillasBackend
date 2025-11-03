@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tortillas.Domain.Entities
+namespace Tortillas.Application.Dtos.OrderDetails
 {
-    public class DetallePedido
+    public class DetallePedidoDto
     {
         public int Id { get; set; }
         public int FkPedido { get; set; }
-        public int? FkDireccion { get; set; }
+        public int FkDireccion { get; set; }
         public string? ProductoNombre { get; set; }
         public decimal Cantidad { get; set; }
         public string? EstatusNombre { get; set; }

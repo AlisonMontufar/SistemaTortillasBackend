@@ -10,6 +10,7 @@ namespace Tortillas.Domain.Interfaces.Repositories
 {
     public interface IPedidoRepository
     {
+<<<<<<< Updated upstream
         Task<Pedido?> GetPedidoByIdAsync(int id);                // puede devolver null
         Task<IEnumerable<Pedido>> GetAllPedidosAsync();         // todos los pedidos
         Task<int> CreatePedidoAsync(Pedido pedido);            // devuelve Id generado
@@ -19,5 +20,11 @@ namespace Tortillas.Domain.Interfaces.Repositories
         Task<IEnumerable<PedidoDetalleEmpresa>> GetPedidosByEmpresaAsync(int idEmpresa);
 
 
+=======
+        Task<int> CreatePedidoAsync(Pedido pedido); // inserta Pedido (sin pago) y devuelve id
+        Task<Pedido?> GetPedidoByIdAsync(int pedidoId);
+        Task UpdatePedidoAsync(Pedido pedido);
+        Task SetPedidoPagoIdAsync(int pedidoId, int pagoId); // actualiza Pedido.PagoId
+>>>>>>> Stashed changes
     }
 }

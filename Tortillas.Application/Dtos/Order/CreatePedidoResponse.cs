@@ -9,6 +9,5 @@ namespace Tortillas.Application.Dtos.Order
     public class CreatePedidoResponse
     {
         public int PedidoId { get; set; }
-        public string Mensaje { get; set; } = "Pedido creado correctamente";
     }
 }

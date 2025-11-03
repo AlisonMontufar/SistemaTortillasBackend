@@ -4,18 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tortillas.Domain.Entities
+namespace Tortillas.Application.Dtos.OrderDetails
 {
-    public class DetallePedido
+    public class CreateDetalleRequest
     {
-        public int Id { get; set; }
-        public int FkPedido { get; set; }
-        public int? FkDireccion { get; set; }
-        public string? ProductoNombre { get; set; }
+        public int FkDireccion { get; set; }
+        public string ProductoNombre { get; set; } = string.Empty;
         public decimal Cantidad { get; set; }
         public string? EstatusNombre { get; set; }
-        public DateTime FechaUltimaModificacion { get; set; }
         public DateTime FechaHora { get; set; }
         public string? NombreSucursal { get; set; }
     }
+
 }

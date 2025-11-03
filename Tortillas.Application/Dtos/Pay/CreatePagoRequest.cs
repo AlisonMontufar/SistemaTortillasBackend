@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tortillas.Domain.Entities
+namespace Tortillas.Application.Dtos.Pay
 {
-  public class Pago
+    public class CreatePagoRequest
     {
-        public int Id { get; set; }
-        public int FkPedido { get; set; } // NOT NULL según tu script
         public string MetodoPago { get; set; } = string.Empty;
         public string? NumeroEnmascarado { get; set; }
         public string? MarcaTarjeta { get; set; }
@@ -17,6 +15,5 @@ namespace Tortillas.Domain.Entities
         public short? ExpAnio { get; set; }
         public string? NombreTitular { get; set; }
         public string? TokenPago { get; set; }
-        public DateTime FechaRegistro { get; set; }
     }
 }
