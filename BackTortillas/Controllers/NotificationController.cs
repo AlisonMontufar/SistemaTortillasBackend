@@ -12,7 +12,7 @@ using Tortillas.Infrastructure.Services.Auth;
 namespace Tortillas.Api.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     public class NotificationController : ControllerBase
     {
         private readonly PasswordRecovery _passwordRecovery;

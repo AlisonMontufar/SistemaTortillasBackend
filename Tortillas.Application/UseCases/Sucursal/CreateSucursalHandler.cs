@@ -37,6 +37,7 @@ namespace Tortillas.Application.UseCases.Sucursal
                 Telefono = request.Telefono,
                 CorreoElectronico = request.CorreoElectronico,
                 NombreEncargado = request.NombreEncargado,
+                FkDireccion= request.FkDireccion,
                 FkEmpresa = request.FkEmpresa,
                 FechaRegistro = DateTime.Now,
                 Estatus = 1

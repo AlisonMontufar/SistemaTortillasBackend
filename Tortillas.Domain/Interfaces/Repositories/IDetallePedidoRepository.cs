@@ -9,7 +9,10 @@ namespace Tortillas.Domain.Interfaces.Repositories
 {
     public interface IDetallePedidoRepository
     {
-        Task<int> CreateDetalleAsync(DetallePedido detalle);
-        Task<List<DetallePedido>> GetAllDetallesByPedidoAsync(int pedidoId);
+        Task<DetallePedido> AddAsync(DetallePedido detalle);
+        Task<DetallePedido?> GetByIdAsync(int id);
+        Task<List<DetallePedido>> GetByPedidoIdAsync(int pedidoId);
+        Task UpdateAsync(DetallePedido detalle);
+        Task DeleteAsync(int id);
     }
 }

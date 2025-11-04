@@ -18,6 +18,7 @@ using Tortillas.Infrastructure.Services.Address;
 using Tortillas.Application.UseCases.Order;
 using Tortillas.Application.UseCases.Company;
 using Tortillas.Application.UseCases.Address;
+using Tortillas.Application.Dtos.Order;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -64,18 +65,13 @@ builder.Services.AddScoped<IPagoRepository, PagoRepository>();
 builder.Services.AddScoped<ISucursalRepository, SucursalRepository>();
 builder.Services.AddScoped<IEmpresaRepository, EmpresaRepository>();
 builder.Services.AddScoped<IDireccionRepository, DireccionRepository>();
+builder.Services.AddScoped<IDetallePedidoSucursalRepository, DetallePedidoSucursalRepository>();
 
-<<<<<<< Updated upstream
-builder.Services.AddScoped<GetPedidosByEmpresaHandler>();
-
-
-
-=======
->>>>>>> Stashed changes
 
 // UseCases
 builder.Services.AddScoped<CreatePedidoHandler>();
-builder.Services.AddScoped<GetPedidoHandler>();
+builder.Services.AddScoped<GetPedidoByIdHandler>();
+builder.Services.AddScoped<UpdatePedidoHandler>();
 builder.Services.AddScoped<CreateSucursalHandler>();
 builder.Services.AddScoped<UpdateSucursalHandler>();
 builder.Services.AddScoped<DeleteSucursalHandler>();

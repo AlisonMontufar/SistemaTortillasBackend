@@ -9,7 +9,10 @@ namespace Tortillas.Domain.Interfaces.Repositories
 {
     public interface IPagoRepository
     {
-        Task<int> AddPagoAsync(Pago pago); // inserta pago y devuelve id
-        Task<Pago?> GetPagoByPedidoAsync(int pedidoId);
+        Task<Pago> AddAsync(Pago pago);
+        Task<Pago?> GetByIdAsync(int id);
+        Task<Pago?> GetByPedidoIdAsync(int pedidoId);
+        Task UpdateAsync(Pago pago);
+        Task DeleteAsync(int id);
     }
 }

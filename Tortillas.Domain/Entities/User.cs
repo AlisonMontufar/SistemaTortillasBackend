@@ -21,5 +21,10 @@ namespace Tortillas.Domain.Entities
 
         public string? CodigoVerificacion { get; set; }
         public DateTime? FechaExpiracionCodigoV { get; set; }
+
+        public Empresa? Empresa { get; set; }
+        public Rol? Rol { get; set; }
+        public Vehiculo? Vehiculo { get; set; }
+        public ICollection<Pedido>? Pedidos { get; set; }
     }
 }
