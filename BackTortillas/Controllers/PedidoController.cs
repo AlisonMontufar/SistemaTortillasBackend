@@ -1,91 +1,80 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using Tortillas.Application.Dtos.Order;
-using Tortillas.Application.UseCases.Order;
+using Tortillas.Application.UseCases.Order; // Tus handlers reales
 
 namespace BackTortillas.Api.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
-    public class PedidoController : ControllerBase
+    [Route("api/[controller]")]
+    public class PedidosController : ControllerBase
     {
-<<<<<<< Updated upstream
-        private readonly CreatePedidoHandler _create;
-        private readonly GetPedidoHandler _get;
-        private readonly ListPedidosHandler _list;
-        private readonly UpdatePedidoHandler _update;
-        private readonly DeletePedidoHandler _delete;
-        private readonly GetPedidosByEmpresaHandler _getByEmpresa;
-        public PedidoController(CreatePedidoHandler create, GetPedidoHandler get, ListPedidosHandler list,
-                                UpdatePedidoHandler update, DeletePedidoHandler delete , GetPedidosByEmpresaHandler getByEmpresa)
-        {
-            _create = create;
-            _get = get;
-            _list = list;
-            _update = update;
-            _delete = delete;
-            _getByEmpresa = getByEmpresa;
+        private readonly CreatePedidoHandler _crearPedidoHandler;
+        private readonly GetPedidoByIdHandler _obtenerPedidoPorIdHandler;
+        private readonly UpdatePedidoHandler _actualizarPedidoHandler;
 
-=======
-        private readonly CreatePedidoHandler _createHandler;
-        private readonly GetPedidoHandler _getHandler;
-
-        public PedidoController(CreatePedidoHandler createHandler, GetPedidoHandler getHandler)
+        public PedidosController(
+            CreatePedidoHandler crearPedidoHandler,
+            GetPedidoByIdHandler obtenerPedidoPorIdHandler,
+            UpdatePedidoHandler actualizarPedidoHandler
+        )
         {
-            _createHandler = createHandler;
-            _getHandler = getHandler;
->>>>>>> Stashed changes
+            _crearPedidoHandler = crearPedidoHandler;
+            _obtenerPedidoPorIdHandler = obtenerPedidoPorIdHandler;
+            _actualizarPedidoHandler = actualizarPedidoHandler;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreatePedidoRequest request)
+        // ✅ Crear un pedido completo (pedido + detalles + sucursales + pago)
+        [HttpPost("crear")]
+        public async Task<IActionResult> CrearPedido([FromBody] CreatePedidoRequest request)
         {
-            var result = await _createHandler.Handle(request);
-            return Ok(result);
+            if (request == null || request.Detalles == null || request.Detalles.Count == 0)
+                return BadRequest(new { mensaje = "Debe incluir al menos un detalle de pedido." });
+
+            // El handler devuelve un PedidoResponse
+            var pedidoCreado = await _crearPedidoHandler.Handle(request);
+
+            if (pedidoCreado == null)
+                return StatusCode(500, new { mensaje = "Error al crear el pedido." });
+
+            return Ok(new
+            {
+                mensaje = "Pedido creado correctamente.",
+                pedido = pedidoCreado
+            });
         }
 
+        // ✅ Obtener pedido por ID con detalles y pago
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetPedidoById(int id)
         {
-            var pedido = await _getHandler.Handle(id);
-            if (pedido == null) return NotFound();
+            var pedido = await _obtenerPedidoPorIdHandler.Handle(id);
+
+            if (pedido == null)
+                return NotFound(new { mensaje = "Pedido no encontrado." });
+
             return Ok(pedido);
         }
-<<<<<<< Updated upstream
 
-        // GET lista de pedidos
-        [HttpGet]
-        public async Task<IActionResult> List(CancellationToken cancellationToken)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdatePedido(int id, [FromBody] UpdatePedidoRequest request)
         {
-            var request = new ListPedidosRequest(); // si no requiere parámetros, se crea vacío
-            var result = await _list.Handle(request, cancellationToken);
-            return Ok(result);
+            if (request == null)
+                return BadRequest(new { mensaje = "Datos inválidos." });
+
+            request.Id = id;
+
+            // El handler devuelve un PedidoResponse o null
+            var pedidoActualizado = await _actualizarPedidoHandler.Handle(request);
+
+            if (pedidoActualizado == null)
+                return NotFound(new { mensaje = "No se pudo actualizar el pedido. Verifique que el ID exista." });
+
+            return Ok(new
+            {
+                mensaje = "Pedido actualizado correctamente.",
+                pedido = pedidoActualizado
+            });
         }
-
-
-        [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdatePedidoRequest request, CancellationToken cancellationToken)
-        {
-            var result = await _update.Handle(request, cancellationToken);
-            return Ok(result);
-        }
-
-        [HttpDelete("{pedidoId}")]
-        public async Task<IActionResult> Delete(int pedidoId, CancellationToken cancellationToken)
-        {
-            var request = new DeletePedidoRequest { PedidoId = pedidoId };
-            var result = await _delete.Handle(request, cancellationToken);
-            return Ok(result);
-        }
-
-        [HttpGet("Empresa/{empresaId}")]
-        public async Task<IActionResult> GetByEmpresa(int empresaId, CancellationToken cancellationToken)
-        {
-            var request = new GetPedidosByEmpresaRequest { EmpresaId = empresaId };
-            var result = await _getByEmpresa.Handle(request, cancellationToken);
-            return Ok(result);
-        }
-
-=======
->>>>>>> Stashed changes
     }
 }

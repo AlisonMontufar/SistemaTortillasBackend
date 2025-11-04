@@ -4,17 +4,15 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Tortillas.Application.Dtos.Company;
-using Tortillas.Domain.Entities;
 using Tortillas.Domain.Interfaces.Repositories;
-using Tortillas.Infrastructure.DataContexts; // Para acceder al DbContext si quieres contar pedidos
+using Tortillas.Infrastructure.DataContexts;
 
 namespace Tortillas.Application.UseCases.Company
 {
     public class GetEmpresasHandler : IRequestHandler<GetEmpresasQuery, List<EmpresaDto>>
-
     {
         private readonly IEmpresaRepository _empresaRepository;
-        private readonly TortillasDbContext _context; // Para contar los pedidos
+        private readonly TortillasDbContext _context;
 
         public GetEmpresasHandler(IEmpresaRepository empresaRepository, TortillasDbContext context)
         {
@@ -33,14 +31,11 @@ namespace Tortillas.Application.UseCases.Company
                 Logo = e.Logo,
                 FechaRegistro = e.FechaRegistro,
                 Estatus = e.Estatus,
-                NumeroPedidos = (from p in _context.Pedido
-                                 join s in _context.Sucursal on p.FkSucursal equals s.Id
-                                 where s.FkEmpresa == e.Id
-                                 select p).Count()
+                // ✅ Contar pedidos directamente con FkEmpresa
+                NumeroPedidos = _context.Pedido.Count(p => p.FkEmpresa == e.Id)
             }).ToList();
 
             return empresasDto;
         }
-
     }
 }

@@ -7,7 +7,7 @@ using Tortillas.Application.UseCases.Sucursal;
 namespace BackTortillas.Api.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     public class SucursalController : ControllerBase
     {
         private readonly CreateSucursalHandler _createHandler;

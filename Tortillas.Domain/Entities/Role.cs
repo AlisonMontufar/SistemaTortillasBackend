@@ -15,5 +15,6 @@ namespace Tortillas.Domain.Entities
         public string DescripcionRol { get; set; }
 
         public byte Estatus { get; set; } = 1;
+        public ICollection<Usuario>? Usuarios { get; set; }
     }
 }
