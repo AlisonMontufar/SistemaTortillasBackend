@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tortillas.Domain.Entities
@@ -22,9 +23,15 @@ namespace Tortillas.Domain.Entities
         public string? CodigoVerificacion { get; set; }
         public DateTime? FechaExpiracionCodigoV { get; set; }
 
+        [ForeignKey("FkEmpresa")]
         public Empresa? Empresa { get; set; }
+
+        [ForeignKey("FkRol")]
         public Rol? Rol { get; set; }
+
+        [ForeignKey("FkVehiculo")]
         public Vehiculo? Vehiculo { get; set; }
+
         public ICollection<Pedido>? Pedidos { get; set; }
     }
 }
