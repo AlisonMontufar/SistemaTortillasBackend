@@ -14,7 +14,10 @@ namespace Tortillas.Infrastructure.DataContexts
         public DbSet<Vehiculo> Vehiculo => Set<Vehiculo>();
         public DbSet<Rol> Rol => Set<Rol>();
         public DbSet<Pedido> Pedido => Set<Pedido>();
+
         public DbSet<DetallePedido> DetallePedido => Set<DetallePedido>();
         public DbSet<Pago> Pago => Set<Pago>();
+        public DbSet<DetallePedidoSucursal> DetallePedidoSucursal => Set<DetallePedidoSucursal>();
+    
     }
 }

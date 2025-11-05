@@ -1,54 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using MediatR;
-using Tortillas.Application.Dtos.Order;
 using Tortillas.Domain.Interfaces.Repositories;
+using Tortillas.Application.Dtos.Order;
 
 namespace Tortillas.Application.UseCases.Order
 {
-    public class UpdatePedidoHandler : IRequestHandler<UpdatePedidoRequest, bool>
+    public class UpdatePedidoHandler
     {
-        private readonly IPedidoRepository _pedidoRepo;
-        private readonly IDetallePedidoRepository _detalleRepo;
+        private readonly IPedidoRepository _pedidoRepository;
 
-        public UpdatePedidoHandler(IPedidoRepository pedidoRepo, IDetallePedidoRepository detalleRepo)
+        public UpdatePedidoHandler(IPedidoRepository pedidoRepository)
         {
-            _pedidoRepo = pedidoRepo;
-            _detalleRepo = detalleRepo;
+            _pedidoRepository = pedidoRepository;
         }
 
-        public async Task<bool> Handle(UpdatePedidoRequest request, CancellationToken cancellationToken)
+        public async Task<PedidoResponse?> Handle(UpdatePedidoRequest request)
         {
-            var pedido = await _pedidoRepo.GetPedidoByIdAsync(request.Id);
-            if (pedido == null) return false;
+            // Buscar pedido
+            var pedido = await _pedidoRepository.GetByIdAsync(request.Id);
+            if (pedido == null)
+                return null;
 
-            pedido.FechaEntrega = request.FechaEntrega;
+            // Actualizar valores
+            pedido.EstatusGeneral = request.EstatusGeneral;
             pedido.Total = request.Total;
-            pedido.FechaUltimaModificacion = DateTime.UtcNow;
+            pedido.FechaUltimaModificacion = DateTime.Now;
 
-            await _pedidoRepo.UpdatePedidoAsync(pedido);
+            // Guardar cambios
+            await _pedidoRepository.UpdateAsync(pedido);
 
-            // Actualizar detalles
-            foreach (var detalle in request.Detalles)
+            // Devolver respuesta
+            return new PedidoResponse
             {
-                var existing = await _detalleRepo.GetDetalleByIdAsync(detalle.Id);
-                if (existing != null)
-                {
-                    existing.ProductoNombre = detalle.ProductoNombre;
-                    existing.Cantidad = detalle.Cantidad;
-                    existing.NombreSucursal = detalle.NombreSucursal;
-                    existing.FechaHora = detalle.FechaHora;
-                    existing.EstatusNombre = detalle.EstatusNombre;
-                    existing.FechaUltimaModificacion = DateTime.UtcNow;
-
-                    await _detalleRepo.UpdateDetalleAsync(existing);
-                }
-            }
-
-            return true;
+                Id = pedido.Id,
+                EstatusGeneral = pedido.EstatusGeneral,
+                Total = pedido.Total,
+                FechaUltimaModificacion = pedido.FechaUltimaModificacion,
+                FkUsuario = pedido.FkUsuario,
+                FkEmpresa = pedido.FkEmpresa
+            };
         }
     }
 }

@@ -1,65 +1,124 @@
 ﻿using System;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-using Tortillas.Domain.Entities;
 using Tortillas.Domain.Interfaces.Repositories;
 using Tortillas.Application.Dtos.Order;
-using MediatR;
 
 namespace Tortillas.Application.UseCases.Order
 {
-    public class CreatePedidoHandler : IRequestHandler<CreatePedidoRequest, int>
+    public class CreatePedidoHandler
     {
-        private readonly IPedidoRepository _pedidoRepo;
-        private readonly IDetallePedidoRepository _detalleRepo;
+        private readonly IPedidoRepository _pedidoRepository;
+        private readonly IDetallePedidoRepository _detallePedidoRepository;
+        private readonly IDetallePedidoSucursalRepository _detalleSucursalRepository;
+        private readonly IPagoRepository _pagoRepository;
 
-        public CreatePedidoHandler(IPedidoRepository pedidoRepo, IDetallePedidoRepository detalleRepo)
+        public CreatePedidoHandler(
+            IPedidoRepository pedidoRepository,
+            IDetallePedidoRepository detallePedidoRepository,
+            IDetallePedidoSucursalRepository detalleSucursalRepository,
+            IPagoRepository pagoRepository)
         {
-            _pedidoRepo = pedidoRepo;
-            _detalleRepo = detalleRepo;
+            _pedidoRepository = pedidoRepository;
+            _detallePedidoRepository = detallePedidoRepository;
+            _detalleSucursalRepository = detalleSucursalRepository;
+            _pagoRepository = pagoRepository;
         }
 
-        public async Task<int> Handle(CreatePedidoRequest request, CancellationToken cancellationToken)
+        public async Task<CreatePedidoResponse> Handle(CreatePedidoRequest request)
         {
-            // Construir pedido con detalles y pago
-            var pedido = new Pedido
+            // Crear pedido
+            var pedido = new Domain.Entities.Pedido
             {
-                FkSucursal = request.FkSucursal,
                 FkUsuario = request.FkUsuario,
-                FkDireccion = request.FkDireccion,
-                FechaEntrega = request.FechaEntrega,
+                FkEmpresa = request.FkEmpresa,
                 Total = request.Total,
-                FechaUltimaModificacion = DateTime.UtcNow,
-                Detalles = request.Detalles.Select(d => new DetallePedido
+                EstatusGeneral = request.EstatusGeneral,
+                FechaUltimaModificacion = DateTime.Now
+            };
+            await _pedidoRepository.AddAsync(pedido);
+
+            // Crear detalles
+            var detallesDto = new System.Collections.Generic.List<DetallePedidoDto>();
+            foreach (var detalleReq in request.Detalles)
+            {
+                var detalle = new Domain.Entities.DetallePedido
                 {
-                    FkDireccion = request.FkDireccion,
-                    ProductoNombre = d.ProductoNombre,
-                    Cantidad = d.Cantidad,
-                    NombreSucursal = d.NombreSucursal ?? string.Empty,
-                    EstatusNombre = d.EstatusNombre ?? "Pendiente",
-                    FechaHora = d.FechaHora == default ? DateTime.UtcNow : d.FechaHora,
-                    FechaUltimaModificacion = DateTime.UtcNow
-                }).ToList(),
-                Pago = request.Pago == null ? null : new Pago
+                    FkPedido = pedido.Id,
+                    ProductoNombre = detalleReq.ProductoNombre,
+                    Cantidad = detalleReq.Cantidad,
+                    EstatusNombre = detalleReq.EstatusNombre,
+                    FechaHora = DateTime.Now,
+                    FechaUltimaModificacion = DateTime.Now,
+                    EstatusDetalle = detalleReq.EstatusDetalle
+                };
+                await _detallePedidoRepository.AddAsync(detalle);
+
+                // Guardar relaciones con sucursales
+                foreach (var sucursalId in detalleReq.SucursalesAsignadas)
                 {
-                    NombreTitular = request.Pago.NombreTitular,
-                    MetodoPago = request.Pago.MetodoPago,
-                    NumeroEnmascarado = request.Pago.NumeroEnmascarado,
-                    MarcaTarjeta = request.Pago.MarcaTarjeta,
-                    ExpMes = request.Pago.ExpMes,
-                    ExpAnio = request.Pago.ExpAnio,
-                    FechaRegistro = DateTime.UtcNow
-                    
+                    var relacion = new Domain.Entities.DetallePedidoSucursal
+                    {
+                        FkDetallePedido = detalle.Id,
+                        FkSucursal = sucursalId,
+                        FechaAsignacion = DateTime.Now
+                    };
+                    await _detalleSucursalRepository.AddAsync(relacion);
                 }
 
+                // Agregar al DTO
+                detallesDto.Add(new DetallePedidoDto
+                {
+                    Id = detalle.Id,
+                    ProductoNombre = detalle.ProductoNombre,
+                    Cantidad = detalle.Cantidad,
+                    EstatusNombre = detalle.EstatusNombre,
+                    EstatusDetalle = detalle.EstatusDetalle,
+                    FechaUltimaModificacion = detalle.FechaUltimaModificacion,
+                    FechaHora = detalle.FechaHora
+                });
+            }
+
+            // Crear pago
+            var pagoEntity = new Domain.Entities.Pago
+            {
+                FkPedido = pedido.Id,
+                MetodoPago = request.Pago.MetodoPago,
+                NumeroEnmascarado = request.Pago.NumeroEnmascarado,
+                MarcaTarjeta = request.Pago.MarcaTarjeta,
+                ExpMes = request.Pago.ExpMes,
+                ExpAnio = request.Pago.ExpAnio,
+                NombreTitular = request.Pago.NombreTitular,
+                TokenPago = request.Pago.TokenPago,
+                FechaRegistro = DateTime.Now
+            };
+            await _pagoRepository.AddAsync(pagoEntity);
+
+            var pagoDto = new PagoDto
+            {
+                Id = pagoEntity.Id,
+                MetodoPago = pagoEntity.MetodoPago,
+                NumeroEnmascarado = pagoEntity.NumeroEnmascarado,
+                MarcaTarjeta = pagoEntity.MarcaTarjeta,
+                ExpMes = pagoEntity.ExpMes,
+                ExpAnio = pagoEntity.ExpAnio,
+                NombreTitular = pagoEntity.NombreTitular,
+                TokenPago = pagoEntity.TokenPago,
+                FechaRegistro = pagoEntity.FechaRegistro
             };
 
-            // Guardar todo en EF Core (pedido + detalles + pago)
-            int pedidoId = await _pedidoRepo.CreatePedidoAsync(pedido);
-
-            // Retornar el Id generado
-            return pedidoId;
+            // Retornar el DTO completo
+            return new CreatePedidoResponse
+            {
+                Id = pedido.Id,
+                Total = pedido.Total,
+                EstatusGeneral = pedido.EstatusGeneral,
+                FechaUltimaModificacion = pedido.FechaUltimaModificacion,
+                FkUsuario = pedido.FkUsuario,
+                FkEmpresa = pedido.FkEmpresa,
+                Detalles = detallesDto,
+                Pago = pagoDto
+            };
         }
     }
 }

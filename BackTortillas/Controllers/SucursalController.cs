@@ -7,7 +7,7 @@ using Tortillas.Application.UseCases.Sucursal;
 namespace BackTortillas.Api.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     public class SucursalController : ControllerBase
     {
         private readonly CreateSucursalHandler _createHandler;
@@ -18,19 +18,19 @@ namespace BackTortillas.Api.Controllers
         private readonly GetSucursalesByEmpresaHandler _getByEmpresaHandler;
 
         public SucursalController(
-            CreateSucursalHandler createHandler,
-            UpdateSucursalHandler updateHandler,
-            DeleteSucursalHandler deleteHandler,
-            GetSucursalesHandler getHandler,
-            GetSucursalByIdHandler getByIdHandler,
-            GetSucursalesByEmpresaHandler getByEmpresaHandler)
+                CreateSucursalHandler createHandler,
+                UpdateSucursalHandler updateHandler,
+                DeleteSucursalHandler deleteHandler,
+                GetSucursalesHandler getHandler,
+                GetSucursalByIdHandler getByIdHandler,
+                GetSucursalesByEmpresaHandler getByEmpresaHandler)
         {
             _createHandler = createHandler;
             _updateHandler = updateHandler;
             _deleteHandler = deleteHandler;
             _getHandler = getHandler;
-            _getByIdHandler = getByIdHandler;             // <--- CORREGIDO
-            _getByEmpresaHandler = getByEmpresaHandler;   // <--- CORREGIDO
+            _getByIdHandler = getByIdHandler;
+            _getByEmpresaHandler = getByEmpresaHandler;
         }
 
         [HttpPost]

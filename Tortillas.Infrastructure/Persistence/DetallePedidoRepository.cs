@@ -10,52 +10,48 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Tortillas.Infrastructure.Persistence
 {
-    public class DetallePedidoRepository : IDetallePedidoRepository
-    {
-        private readonly TortillasDbContext _context;
-
-        public DetallePedidoRepository(TortillasDbContext context)
+        public class DetallePedidoRepository : IDetallePedidoRepository
         {
-            _context = context;
-        }
+            private readonly TortillasDbContext _context;
 
-        // Obtener detalle por Id (puede ser null si no existe)
-        public async Task<DetallePedido?> GetDetalleByIdAsync(int id)
-        {
-            return await _context.DetallePedido.FirstOrDefaultAsync(d => d.Id == id);
-        }
-
-        // Obtener todos los detalles de un pedido
-        public async Task<IEnumerable<DetallePedido>> GetAllDetallesAsync(int pedidoId)
-        {
-            return await _context.DetallePedido
-                .Where(d => d.FkPedido == pedidoId)
-                .ToListAsync();
-        }
-
-        // Crear detalle y devolver Id generado
-        public async Task CreateDetalleAsync(DetallePedido detalle)
-        {
-            _context.DetallePedido.Add(detalle);
-            await _context.SaveChangesAsync();
-        }
-
-        // Actualizar detalle
-        public async Task UpdateDetalleAsync(DetallePedido detalle)
-        {
-            _context.DetallePedido.Update(detalle);
-            await _context.SaveChangesAsync();
-        }
-
-        // Eliminar detalle
-        public async Task DeleteDetalleAsync(int id)
-        {
-            var detalle = await _context.DetallePedido.FindAsync(id);
-            if (detalle != null)
+            public DetallePedidoRepository(TortillasDbContext context)
             {
-                _context.DetallePedido.Remove(detalle);
+                _context = context;
+            }
+
+            public async Task<DetallePedido> AddAsync(DetallePedido detalle)
+            {
+                _context.DetallePedido.Add(detalle);
                 await _context.SaveChangesAsync();
+                return detalle;
+            }
+
+            public async Task<List<DetallePedido>> GetByPedidoIdAsync(int pedidoId)
+            {
+                return await _context.DetallePedido
+                    .Where(d => d.FkPedido == pedidoId)
+                    .ToListAsync();
+            }
+
+            public async Task<DetallePedido?> GetByIdAsync(int id)
+            {
+                return await _context.DetallePedido.FirstOrDefaultAsync(d => d.Id == id);
+            }
+
+            public async Task UpdateAsync(DetallePedido detalle)
+            {
+                _context.DetallePedido.Update(detalle);
+                await _context.SaveChangesAsync();
+            }
+
+            public async Task DeleteAsync(int id)
+            {
+                var detalle = await _context.DetallePedido.FindAsync(id);
+                if (detalle != null)
+                {
+                    _context.DetallePedido.Remove(detalle);
+                    await _context.SaveChangesAsync();
+                }
             }
         }
     }
-}
