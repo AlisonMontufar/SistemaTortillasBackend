@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Tortillas.Application.Dtos.Sucursal;
 using Tortillas.Domain.Interfaces.Repositories;
@@ -19,13 +16,22 @@ namespace Tortillas.Application.UseCases.Sucursal
 
         public async Task<DeleteSucursalResponse> Handle(DeleteSucursalRequest request)
         {
-            await _sucursalRepository.DeleteSucursalAsync(request.SucursalId);
+            // 1️⃣ Buscar la sucursal
+            var sucursal = await _sucursalRepository.GetSucursalByIdAsync(request.SucursalId);
+            if (sucursal == null)
+                throw new Exception("La sucursal no existe o ya fue desactivada.");
 
+            // 2️⃣ Cambiar estatus a inactiva
+            sucursal.Estatus = 0;
+
+            // 3️⃣ Actualizar en la base de datos
+            await _sucursalRepository.UpdateSucursalAsync(sucursal);
+
+            // 4️⃣ Devolver mensaje
             return new DeleteSucursalResponse
             {
-                Mensaje = "Sucursal eliminada correctamente"
+                Mensaje = "Sucursal desactivada correctamente."
             };
         }
     }
-
 }

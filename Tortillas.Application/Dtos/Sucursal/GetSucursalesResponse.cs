@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace Tortillas.Application.Dtos.Sucursal
 {
-    public class GetSucursalResponse
+    public class GetSucursalesResponse
     {
         public int SucursalId { get; set; }
         public string NombreSucursal { get; set; } = string.Empty;
@@ -14,8 +10,11 @@ namespace Tortillas.Application.Dtos.Sucursal
         public string? CorreoElectronico { get; set; }
         public string? NombreEncargado { get; set; }
         public int FkEmpresa { get; set; }
-
-        // Nuevo campo para mostrar el nombre de la empresa
         public string? NombreEmpresa { get; set; }
+        public byte Estatus { get; set; }
+
+
+        // ✅ Agrega esta propiedad para que el handler funcione
+        public DireccionResponse? Direccion { get; set; }
     }
 }
