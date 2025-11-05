@@ -10,5 +10,6 @@ namespace Tortillas.Application.Dtos.Sucursal
     {
         public int SucursalId { get; set; }
         public string Mensaje { get; set; } = string.Empty;
+
     }
 }

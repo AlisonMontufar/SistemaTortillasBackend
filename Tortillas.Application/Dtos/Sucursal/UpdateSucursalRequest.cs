@@ -10,10 +10,12 @@ namespace Tortillas.Application.Dtos.Sucursal
     {
         public int SucursalId { get; set; }
         public string NombreSucursal { get; set; } = string.Empty;
-        public string Telefono { get; set; } = string.Empty;
-        public string CorreoElectronico { get; set; } = string.Empty;
-        public string NombreEncargado { get; set; } = string.Empty;
-        public int FkEmpresa { get; set; }
+        public string? CorreoElectronico { get; set; }
+        public string? Telefono { get; set; }
+        public string? NombreEncargado { get; set; }
         public byte Estatus { get; set; }
+        public int FkEmpresa { get; set; }
+
+        public DireccionRequest? Direccion { get; set; } // ✅ agregado
     }
 }
