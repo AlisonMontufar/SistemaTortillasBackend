@@ -11,7 +11,7 @@ namespace Tortillas.Infrastructure.Services.Address
     public class NotificationService : INotificationService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _baseUrl = "http://localhost:5149/api/v1/Notification/";
+        private readonly string _baseUrl = "http://localhost:5149/api/Notification/";
 
         public NotificationService(HttpClient httpClient)
         {
