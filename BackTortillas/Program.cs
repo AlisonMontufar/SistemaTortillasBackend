@@ -99,7 +99,7 @@ builder.Services.AddHttpClient<INotificationService, NotificationService>(client
 {
     var baseUrl = builder.Configuration["Notification:BaseUrl"];
     client.BaseAddress = string.IsNullOrEmpty(baseUrl)
-        ? new Uri("http://localhost:5149/api/v1/Notification/")
+        ? new Uri("http://localhost:5149/api/Notification/")
         : new Uri(baseUrl);
     client.Timeout = TimeSpan.FromSeconds(30);
 });
