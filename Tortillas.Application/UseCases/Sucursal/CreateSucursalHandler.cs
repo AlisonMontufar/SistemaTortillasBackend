@@ -55,6 +55,7 @@ namespace Tortillas.Application.UseCases.Sucursal
                 Telefono = request.Telefono,
                 CorreoElectronico = request.CorreoElectronico,
                 NombreEncargado = request.NombreEncargado,
+                FkDireccion = nuevaDireccion.Id, // 👈 se usa el ID que viene del objeto devuelto
                 FkEmpresa = request.FkEmpresa,
                 FechaRegistro = DateTime.Now,
                 Estatus = 1
