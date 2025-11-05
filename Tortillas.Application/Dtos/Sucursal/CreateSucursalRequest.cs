@@ -13,6 +13,7 @@ namespace Tortillas.Application.Dtos.Sucursal
         public string? CorreoElectronico { get; set; }  // coincide con la entity
         public string? NombreEncargado { get; set; }
         public int FkEmpresa { get; set; }  // coincide con la entity+
-        public int FkDireccion { get; set; }
+        public DireccionRequest Direccion { get; set; } = new DireccionRequest();
+
     }
 }
