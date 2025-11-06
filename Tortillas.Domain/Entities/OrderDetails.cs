@@ -19,5 +19,7 @@ namespace Tortillas.Domain.Entities
         public DateTime? FechaUltimaModificacion { get; set; }
         public DateTime? FechaHora { get; set; }
         public string? EstatusDetalle { get; set; }
+
+        public string? Firma { get; set; }
     }
 }

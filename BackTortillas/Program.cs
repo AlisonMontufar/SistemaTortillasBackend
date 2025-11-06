@@ -95,6 +95,9 @@ builder.Services.AddScoped<RoleUser>();
 builder.Services.AddScoped<UserEmailNotificationService>();
 builder.Services.AddScoped<SendRegistrationLink>();
 
+builder.Services.AddScoped<GetPedidosByEmpresaHandler>();
+builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
+
 builder.Services.AddHttpClient<INotificationService, NotificationService>(client =>
 {
     var baseUrl = builder.Configuration["Notification:BaseUrl"];
