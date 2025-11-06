@@ -62,7 +62,8 @@ namespace Tortillas.Infrastructure.Persistence
                 join dps in _context.DetallePedidoSucursal on dp.Id equals dps.FkDetallePedido
                 join s in _context.Sucursal on dps.FkSucursal equals s.Id
                 join d in _context.Direccion on s.FkDireccion equals d.Id
-                where e.Id == idEmpresa && dp.EstatusDetalle == "Pendiente"
+                where e.Id == idEmpresa &&
+                (dp.EstatusDetalle == "Pendiente" || dp.EstatusDetalle == "En camino")
 
                 select new PedidoDetalleEmpresa
                 {
