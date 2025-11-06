@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -34,7 +34,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tortillas.Application\Tortillas.Application.csproj" />
-    <ProjectReference Include="..\Tortilleria.Infrastructure\Tortilleria.Infrastructure.csproj" />
+    <ProjectReference Include="..\Tortillas.Infrastructure\Tortillas.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

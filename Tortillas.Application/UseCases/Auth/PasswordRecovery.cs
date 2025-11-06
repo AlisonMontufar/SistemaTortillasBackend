@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Tortillas.Domain.Entities;
 using Tortillas.Domain.Interfaces.Repositories;
 using Tortillas.Domain.Interfaces.Services.Auth;
-using Tortilleria.Infrastructure.Services.Auth;
+using Tortillas.Infrastructure.Services.Auth;
 
 namespace Tortillas.Application.UseCases.Auth
 {
