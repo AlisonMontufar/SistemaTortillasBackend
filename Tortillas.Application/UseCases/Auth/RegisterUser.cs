@@ -63,7 +63,7 @@ namespace Tortillas.Application.UseCases.Auth
 
             // 🔹 Crear usuario
             var usuario = new Usuario
-            {
+            {         
                 NombreUsuario = request.NombreUsuario,
                 Nombre = request.Nombre,
                 ApellidoP = request.ApellidoP,
