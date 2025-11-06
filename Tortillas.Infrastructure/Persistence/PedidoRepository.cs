@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
 using Tortillas.Domain.Entities;
@@ -55,6 +56,7 @@ namespace Tortillas.Infrastructure.Persistence
         }
         public async Task<IEnumerable<PedidoDetalleEmpresa>> GetPedidosByEmpresaAsync(int idEmpresa)
         {
+            var estatusValidos = new[] { "Pendiente", "En camino" };
             var result = await (
                 from e in _context.Empresa
                 join p in _context.Pedido on e.Id equals p.FkEmpresa
@@ -62,7 +64,10 @@ namespace Tortillas.Infrastructure.Persistence
                 join dps in _context.DetallePedidoSucursal on dp.Id equals dps.FkDetallePedido
                 join s in _context.Sucursal on dps.FkSucursal equals s.Id
                 join d in _context.Direccion on s.FkDireccion equals d.Id
-                where e.Id == idEmpresa && dp.EstatusDetalle == "Pendiente"
+             
+
+                where e.Id == idEmpresa &&
+                 estatusValidos.Contains(dp.EstatusDetalle)
 
                 select new PedidoDetalleEmpresa
                 {
