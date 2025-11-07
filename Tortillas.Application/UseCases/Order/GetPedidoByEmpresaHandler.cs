@@ -23,6 +23,7 @@ namespace Tortillas.Application.UseCases.Order
 
             return raw.Select(x => new DetallePedidoEmpresaDto
             {
+                Id = x.Id,
                 IdPedido = x.IdPedido,
                 Empresa = x.Empresa,
                 NombreEncargado = x.NombreEncargado,
