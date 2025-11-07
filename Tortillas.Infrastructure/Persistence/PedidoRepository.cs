@@ -91,10 +91,10 @@ namespace Tortillas.Infrastructure.Persistence
             return result;
         }
 
-        public async Task<int> UpdateEstatusDetalleByPedidoIdAsync(int idPedido, string nuevoEstatus)
+        public async Task<int> UpdateEstatusDetalleByPedidoIdAsync(int id, string nuevoEstatus)
         {
             var detalles = await _context.DetallePedido
-                .Where(dp => dp.FkPedido == idPedido)
+                .Where(dp => dp.Id == id)
                 .ToListAsync();
 
             if (!detalles.Any()) return 0;
@@ -108,10 +108,10 @@ namespace Tortillas.Infrastructure.Persistence
             return await _context.SaveChangesAsync(); 
         }
 
-        public async Task<int> UpdateFirmaByPedidoIdAsync(int idPedido, string firmaBase64)
+        public async Task<int> UpdateFirmaByPedidoIdAsync(int id, string firmaBase64)
         {
             var detalles = await _context.DetallePedido
-                .Where(dp => dp.FkPedido == idPedido)
+                .Where(dp => dp.Id == id)
                 .ToListAsync();
 
             if (!detalles.Any()) return 0;
