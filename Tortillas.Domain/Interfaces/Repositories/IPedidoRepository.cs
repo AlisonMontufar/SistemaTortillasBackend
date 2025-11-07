@@ -16,7 +16,7 @@ namespace Tortillas.Domain.Interfaces.Repositories
         Task UpdateAsync(Pedido pedido);
         Task DeleteAsync(int id);
         Task<IEnumerable<PedidoDetalleEmpresa>> GetPedidosByEmpresaAsync(int empresaId);
-        Task<int> UpdateEstatusDetalleByPedidoIdAsync(int idPedido, string nuevoEstatus);
-        Task<int> UpdateFirmaByPedidoIdAsync(int idPedido, string firmaBase64);
+        Task<int> UpdateEstatusDetalleByPedidoIdAsync(int id, string nuevoEstatus);
+        Task<int> UpdateFirmaByPedidoIdAsync(int id, string firmaBase64);
     }
 }

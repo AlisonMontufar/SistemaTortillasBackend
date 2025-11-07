@@ -97,7 +97,7 @@ namespace BackTortillas.Api.Controllers
             if (string.IsNullOrWhiteSpace(request.EstatusDetalle))
                 return BadRequest(new { mensaje = "El estatus no puede estar vacío." });
 
-            var actualizados = await _pedidoRepository.UpdateEstatusDetalleByPedidoIdAsync(request.IdPedido, request.EstatusDetalle);
+            var actualizados = await _pedidoRepository.UpdateEstatusDetalleByPedidoIdAsync(request.Id, request.EstatusDetalle);
 
             if (actualizados == 0)
                 return NotFound(new { mensaje = "No se encontraron detalles para el pedido especificado." });
@@ -114,7 +114,7 @@ namespace BackTortillas.Api.Controllers
             if (string.IsNullOrWhiteSpace(request.FirmaBase64))
                 return BadRequest(new { mensaje = "La firma no puede estar vacía." });
 
-            var actualizados = await _pedidoRepository.UpdateFirmaByPedidoIdAsync(request.IdPedido, request.FirmaBase64);
+            var actualizados = await _pedidoRepository.UpdateFirmaByPedidoIdAsync(request.Id, request.FirmaBase64);
 
             if (actualizados == 0)
                 return NotFound(new { mensaje = "No se encontraron detalles para el pedido especificado." });

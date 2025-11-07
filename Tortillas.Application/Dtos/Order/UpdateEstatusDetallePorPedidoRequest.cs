@@ -8,7 +8,7 @@ namespace Tortillas.Application.Dtos.Order
 {
     public class UpdateEstatusDetallePorPedidoRequest
     {
-        public int IdPedido { get; set; }
+        public int Id { get; set; }
         public string EstatusDetalle { get; set; }
     }
 }
