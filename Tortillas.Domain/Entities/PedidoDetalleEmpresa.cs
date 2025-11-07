@@ -4,6 +4,7 @@ namespace Tortillas.Domain.Entities
 {
     public class PedidoDetalleEmpresa
     {
+        public int Id { get; set; }
         public int IdPedido { get; set; }
         public string Empresa { get; set; }
         public string NombreEncargado { get; set; }
