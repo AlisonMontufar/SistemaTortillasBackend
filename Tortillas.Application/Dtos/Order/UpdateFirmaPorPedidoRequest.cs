@@ -8,7 +8,7 @@ namespace Tortillas.Application.Dtos.Order
 {
     public class UpdateFirmaPorPedidoRequest
     {
-        public int IdPedido { get; set; }
+        public int Id { get; set; }
         public string FirmaBase64 { get; set; }
     }
  }
