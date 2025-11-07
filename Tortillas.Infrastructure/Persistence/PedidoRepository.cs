@@ -67,6 +67,7 @@ namespace Tortillas.Infrastructure.Persistence
 
                 select new PedidoDetalleEmpresa
                 {
+                    Id = dp.Id,
                     IdPedido = (int)dp.FkPedido,
                     Empresa = e.NombreEmpresa,
                     NombreEncargado = s.NombreEncargado,

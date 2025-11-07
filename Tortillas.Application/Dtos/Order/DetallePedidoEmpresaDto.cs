@@ -4,6 +4,7 @@ namespace Tortillas.Application.Dtos.Order
 {
     public class DetallePedidoEmpresaDto
     {
+        public int Id { get; set; }
         public int? IdPedido { get; set; }
         public string Empresa { get; set; }
         public string NombreEncargado { get; set; }
