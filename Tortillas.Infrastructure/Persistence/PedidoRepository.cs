@@ -94,7 +94,7 @@ namespace Tortillas.Infrastructure.Persistence
         public async Task<int> UpdateEstatusDetalleByPedidoIdAsync(int idPedido, string nuevoEstatus)
         {
             var detalles = await _context.DetallePedido
-                .Where(dp => dp.FkPedido == idPedido)
+                .Where(dp => dp.Id == idPedido)
                 .ToListAsync();
 
             if (!detalles.Any()) return 0;
@@ -111,7 +111,7 @@ namespace Tortillas.Infrastructure.Persistence
         public async Task<int> UpdateFirmaByPedidoIdAsync(int idPedido, string firmaBase64)
         {
             var detalles = await _context.DetallePedido
-                .Where(dp => dp.FkPedido == idPedido)
+                .Where(dp => dp.Id == idPedido)
                 .ToListAsync();
 
             if (!detalles.Any()) return 0;
