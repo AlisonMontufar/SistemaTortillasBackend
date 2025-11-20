@@ -47,14 +47,14 @@ namespace Tortillas.Application.UseCases.Order
                     FkPedido = pedido.Id,
                     ProductoNombre = detalleReq.ProductoNombre,
                     Cantidad = detalleReq.Cantidad,
-                    EstatusNombre = detalleReq.EstatusNombre,
+                 
                     FechaHora = DateTime.Now,
                     FechaUltimaModificacion = DateTime.Now,
                     EstatusDetalle = detalleReq.EstatusDetalle
                 };
                 await _detallePedidoRepository.AddAsync(detalle);
 
-                // Guardar relaciones con sucursales
+              
                 foreach (var sucursalId in detalleReq.SucursalesAsignadas)
                 {
                     var relacion = new Domain.Entities.DetallePedidoSucursal
@@ -66,20 +66,18 @@ namespace Tortillas.Application.UseCases.Order
                     await _detalleSucursalRepository.AddAsync(relacion);
                 }
 
-                // Agregar al DTO
                 detallesDto.Add(new DetallePedidoDto
                 {
                     Id = detalle.Id,
                     ProductoNombre = detalle.ProductoNombre,
                     Cantidad = detalle.Cantidad,
-                    EstatusNombre = detalle.EstatusNombre,
                     EstatusDetalle = detalle.EstatusDetalle,
                     FechaUltimaModificacion = detalle.FechaUltimaModificacion,
                     FechaHora = detalle.FechaHora
                 });
             }
 
-            // Crear pago
+            
             var pagoEntity = new Domain.Entities.Pago
             {
                 FkPedido = pedido.Id,

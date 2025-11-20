@@ -14,6 +14,8 @@ namespace Tortillas.Application.Dtos.Sucursal
         public string Ciudad { get; set; } = string.Empty;
         public string Estado { get; set; } = string.Empty;
         public string CP { get; set; } = string.Empty;
+        public string? Latitud { get; set; }
+        public string? Longitud { get; set; }
         public string? Referencias { get; set; }
     }
 }

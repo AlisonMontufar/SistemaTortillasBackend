@@ -39,7 +39,6 @@ namespace Tortillas.Application.UseCases.Order
                 Id = d.Id,
                 ProductoNombre = d.ProductoNombre,
                 Cantidad = d.Cantidad,
-                EstatusNombre = d.EstatusNombre,
                 SucursalesAsignadas = (await _detalleSucursalRepository.GetByDetalleIdAsync(d.Id))
                     .Select(s => s.FkSucursal)
                     .ToList()
