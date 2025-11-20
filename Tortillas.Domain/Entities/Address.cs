@@ -16,7 +16,7 @@ namespace Tortillas.Domain.Entities
         public string Estado { get; set; }
         public string CP { get; set; }
         public string? Referencias { get; set; }
-
+        //se agrego latitud
         public string? Latitud { get; set; }
         public string? Longitud { get; set; }
         public DateTime FechaUltimaModificacion { get; set; }
