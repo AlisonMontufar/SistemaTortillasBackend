@@ -41,8 +41,11 @@ namespace Tortillas.Application.UseCases.Order
                 CodigoPostal = x.CodigoPostal,
                 Ciudad = x.Ciudad,
                 Estado = x.Estado,
+                Latitud= x.Latitud,
+                Longitud= x.Longitud
               
             });
         }
+
     }
 }
