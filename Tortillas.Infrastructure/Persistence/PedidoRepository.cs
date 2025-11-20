@@ -85,6 +85,8 @@ namespace Tortillas.Infrastructure.Persistence
                     Ciudad = d.Ciudad,
                     Estado = d.Estado,
                     CodigoPostal = d.CP,
+                    Latitud = d.Latitud,
+                    Longitud = d.Longitud,
                 }
             ).ToListAsync();
 
