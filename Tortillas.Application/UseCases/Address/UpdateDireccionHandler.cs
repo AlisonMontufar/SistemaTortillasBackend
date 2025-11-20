@@ -29,6 +29,8 @@ namespace Tortillas.Application.UseCases.Address
                 Ciudad = request.Ciudad,
                 Estado = request.Estado,
                 CP = request.CP,
+                Latitud = request.Latitud,
+                Longitud = request.Longitud,
                 Referencias = request.Referencias
             };
 
@@ -44,6 +46,8 @@ namespace Tortillas.Application.UseCases.Address
                 Ciudad = updated.Ciudad,
                 Estado = updated.Estado,
                 CP = updated.CP,
+                Latitud = updated.Latitud,
+                Longitud = updated.Longitud,
                 Referencias = updated.Referencias,
                 FechaUltimaModificacion = updated.FechaUltimaModificacion
             };

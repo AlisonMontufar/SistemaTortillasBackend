@@ -58,6 +58,8 @@ namespace Tortillas.Application.UseCases.Sucursal
                     direccion.Ciudad = request.Direccion.Ciudad;
                     direccion.Estado = request.Direccion.Estado;
                     direccion.CP = request.Direccion.CP;
+                    direccion.Latitud = request.Direccion.Latitud;
+                    direccion.Longitud = request.Direccion.Longitud;
                     direccion.Referencias = request.Direccion.Referencias;
 
                     await _direccionRepository.UpdateDireccionAsync(direccion);

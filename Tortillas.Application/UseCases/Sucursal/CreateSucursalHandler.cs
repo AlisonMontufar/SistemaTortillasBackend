@@ -38,6 +38,8 @@ namespace Tortillas.Application.UseCases.Sucursal
                 Ciudad = request.Direccion.Ciudad,
                 Estado = request.Direccion.Estado,
                 CP = request.Direccion.CP,
+                Latitud = request.Direccion.Latitud,
+                Longitud = request.Direccion.Longitud,
                 Referencias = request.Direccion.Referencias
             };
 

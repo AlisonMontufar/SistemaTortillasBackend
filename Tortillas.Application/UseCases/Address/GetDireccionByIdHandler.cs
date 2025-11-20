@@ -30,6 +30,8 @@ namespace Tortillas.Application.UseCases.Address
                 Colonia = d.Colonia,
                 Ciudad = d.Ciudad,
                 Estado = d.Estado,
+                Latitud = d.Latitud,
+                Longitud = d.Longitud,
                 CP = d.CP,
                 Referencias = d.Referencias,
                 FechaUltimaModificacion = d.FechaUltimaModificacion

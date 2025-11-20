@@ -15,7 +15,7 @@ namespace Tortillas.Domain.Entities
 
         public string? ProductoNombre { get; set; }
         public decimal Cantidad { get; set; }
-        public string? EstatusNombre { get; set; }
+        
         public DateTime? FechaUltimaModificacion { get; set; }
         public DateTime? FechaHora { get; set; }
         public string? EstatusDetalle { get; set; }

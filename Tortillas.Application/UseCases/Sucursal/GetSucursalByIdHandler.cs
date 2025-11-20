@@ -48,6 +48,8 @@ namespace Tortillas.Application.UseCases.Sucursal
                     Ciudad = direccion.Ciudad,
                     Estado = direccion.Estado,
                     CP = direccion.CP,
+                    Latitud = direccion.Latitud,
+                    Longitud = direccion.Longitud,
                     Referencias = direccion.Referencias
                 }
             };
