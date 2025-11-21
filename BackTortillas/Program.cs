@@ -102,7 +102,7 @@ builder.Services.AddHttpClient<INotificationService, NotificationService>(client
 {
     var baseUrl = builder.Configuration["Notification:BaseUrl"];
     client.BaseAddress = string.IsNullOrEmpty(baseUrl)
-        ? new Uri("https://sistematortilla.onrender.com/api/Notification/")
+        ? new Uri("https://sistematortillasbackend-0xbz.onrender.com/api/Notification/")
         : new Uri(baseUrl);
     client.Timeout = TimeSpan.FromSeconds(30);
 });
