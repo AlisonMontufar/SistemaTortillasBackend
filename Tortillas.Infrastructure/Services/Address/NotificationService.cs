@@ -11,7 +11,7 @@ namespace Tortillas.Infrastructure.Services.Address
     public class NotificationService : INotificationService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _baseUrl = "https://sistematortilla.onrender.com/api/Notification/";
+        private readonly string _baseUrl = "https://sistematortillasbackend-0xbz.onrender.com/api/Notification/";
 
         public NotificationService(HttpClient httpClient)
         {
