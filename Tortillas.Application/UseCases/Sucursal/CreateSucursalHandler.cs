@@ -46,9 +46,9 @@ namespace Tortillas.Application.UseCases.Sucursal
             var nuevaDireccion = await _direccionRepository.CreateDireccionAsync(direccion);
 
             // 3️⃣ Enviar link de registro al encargado
-            var sent = await _notificationService.SendRegistrationLinkAsync(request.CorreoElectronico, 2);
-            if (!sent)
-                throw new Exception("No se pudo enviar el enlace de registro al encargado.");
+            //var sent = await _notificationService.SendRegistrationLinkAsync(request.CorreoElectronico, 2);
+            //if (!sent)
+               // throw new Exception("No se pudo enviar el enlace de registro al encargado.");
 
             // 4️⃣ Crear sucursal asociada a la dirección recién creada
             var sucursal = new Tortillas.Domain.Entities.Sucursal
